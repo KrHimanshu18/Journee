@@ -3,41 +3,66 @@ import { React } from "react";
 function Profile() {
   return (
     <div className="h-screen bg-black">
-      <header className="flex justify-between items-center px-8 py-4 bg-gray-900 shadow-md text-white">
+      <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white">
         <div className="flex items-center gap-2">
-          <img
-            src="./assets/book-solid-24.png"
-            alt="notebook logo"
-            className="h-10 w-10"
-          />
-          <h1 className="font-bold text-4xl text-amber-400">Journee</h1>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            style={{ fill: "rgba(255, 215, 0, 1)" }}
+          >
+            <path d="M6.012 18H21V4a2 2 0 0 0-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1zM8 6h9v2H8V6z"></path>
+          </svg>
+          <h1
+            className="text-3xl"
+            style={{
+              fontFamily: "'Jacques Francois Shadow', cursive",
+              color: "rgba(255, 215, 0, 1)",
+            }}
+          >
+            JOURNEE
+          </h1>
         </div>
         <div className="flex items-center gap-6">
           <a
             href=""
-            className="font-semibold text-lg hover:text-amber-400 transition duration-300"
+            style={{
+              fontFamily: "'Jacques Francois Shadow', cursive",
+            }}
+            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Home
           </a>
           <a
             href=""
-            className="font-semibold text-lg hover:text-amber-400 transition duration-300"
+            style={{
+              fontFamily: "'Jacques Francois Shadow', cursive",
+            }}
+            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Explore
           </a>
           <a
             href=""
-            className="font-semibold text-lg hover:text-amber-400 transition duration-300"
+            style={{
+              fontFamily: "'Jacques Francois Shadow', cursive",
+            }}
+            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Profile
           </a>
           <a
             href=""
-            className="font-semibold text-lg hover:text-amber-400 transition duration-300"
+            style={{ fontFamily: "'Jacques Francois Shadow', cursive" }}
+            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Settings
           </a>
-          <button className="bg-amber-400 px-5 py-2 rounded-lg text-black font-semibold hover:bg-amber-500 transition duration-300">
+          <button
+            className="bg-[rgba(255,215,0,1)] text-xl px-5 py-2 rounded-lg text-black font-semibold hover:bg-amber-500 transition duration-300"
+            style={{ fontFamily: "'Kaushan Script', cursive" }}
+          >
             Login
           </button>
         </div>
@@ -47,7 +72,15 @@ function Profile() {
         <div className="flex">
           <div className="flex flex-col">
             <div className="flex">
-              <img src="" alt="Profile Pic" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="60"
+                height="60"
+                viewBox="0 0 24 24"
+                style={{ fill: "rgba(255, 215, 0, 1)" }}
+              >
+                <path d="M12 2C6.486 2 2 6.486 2 12c.001 5.515 4.487 10.001 10 10.001 5.514 0 10-4.486 10.001-10.001 0-5.514-4.486-10-10.001-10zm0 18.001c-4.41 0-7.999-3.589-8-8.001 0-4.411 3.589-8 8-8 4.412 0 8.001 3.589 8.001 8-.001 4.412-3.59 8.001-8.001 8.001z"></path>
+              </svg>
               <div className="flex gap-5">
                 <a href="" className="flex flex-col justify-center text-center">
                   <p className="font-semibold text-center text-white text-xl">

@@ -3,41 +3,66 @@ import { React } from "react";
 function Home() {
   return (
     <div className="h-screen bg-black">
-      <header className="flex justify-between items-center px-8 py-4 bg-gray-900 shadow-md text-white">
+      <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white">
         <div className="flex items-center gap-2">
-          <img
-            src="./assets/book-solid-24.png"
-            alt="notebook logo"
-            className="h-10 w-10"
-          />
-          <h1 className="font-bold text-4xl text-amber-400">Journee</h1>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            style={{ fill: "rgba(255, 215, 0, 1)" }}
+          >
+            <path d="M6.012 18H21V4a2 2 0 0 0-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1zM8 6h9v2H8V6z"></path>
+          </svg>
+          <h1
+            className="text-3xl"
+            style={{
+              fontFamily: "'Jacques Francois Shadow', cursive",
+              color: "rgba(255, 215, 0, 1)",
+            }}
+          >
+            JOURNEE
+          </h1>
         </div>
         <div className="flex items-center gap-6">
           <a
             href=""
-            className="font-semibold text-lg hover:text-amber-400 transition duration-300"
+            style={{
+              fontFamily: "'Jacques Francois Shadow', cursive",
+            }}
+            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Home
           </a>
           <a
             href=""
-            className="font-semibold text-lg hover:text-amber-400 transition duration-300"
+            style={{
+              fontFamily: "'Jacques Francois Shadow', cursive",
+            }}
+            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Explore
           </a>
           <a
             href=""
-            className="font-semibold text-lg hover:text-amber-400 transition duration-300"
+            style={{
+              fontFamily: "'Jacques Francois Shadow', cursive",
+            }}
+            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Profile
           </a>
           <a
             href=""
-            className="font-semibold text-lg hover:text-amber-400 transition duration-300"
+            style={{ fontFamily: "'Jacques Francois Shadow', cursive" }}
+            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Settings
           </a>
-          <button className="bg-amber-400 px-5 py-2 rounded-lg text-black font-semibold hover:bg-amber-500 transition duration-300">
+          <button
+            className="bg-[rgba(255,215,0,1)] text-xl px-5 py-2 rounded-lg text-black font-semibold hover:bg-amber-500 transition duration-300"
+            style={{ fontFamily: "'Kaushan Script', cursive" }}
+          >
             Login
           </button>
         </div>
