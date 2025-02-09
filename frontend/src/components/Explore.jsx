@@ -31,6 +31,7 @@ function Explore() {
             <p className="font-semibold text-xs text-white">@Kr_Himanshu</p>
             <button className="bg-amber-300 text-white">Follow</button>
           </div>
+
           <div className="flex justify-center">
             <p className="font-semibold text-xs text-white">
               Life's journey begins with a single step, but is true essence lies
@@ -44,6 +45,7 @@ function Explore() {
               trust that every step shapes your story.
             </p>
           </div>
+
           <div className="flex justify-between">
             <a href="" className="flex gap-2">
               <img
@@ -66,7 +68,6 @@ function Explore() {
               />
               <p className="font-semibold text-xs text-white">Share</p>
             </a>
-            text-white
           </div>
         </div>
       </section>
