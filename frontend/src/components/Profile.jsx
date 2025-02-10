@@ -2,7 +2,15 @@ import { React } from "react";
 
 function Profile() {
   return (
-    <div className="bg-[#12202e]">
+    <div
+      className="bg-[#12202e]"
+      style={{
+        backgroundImage: "url('https://source.unsplash.com/random')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundBlendMode: "soft-light",
+      }}
+    >
       <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white">
         <div className="flex items-center gap-2">
           <svg

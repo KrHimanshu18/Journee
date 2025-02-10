@@ -2,7 +2,15 @@ import { React } from "react";
 
 function Explore() {
   return (
-    <div className="h-screen bg-[#12202e]">
+    <div
+      className="h-screen bg-[#12202e]"
+      style={{
+        backgroundImage: "url('https://source.unsplash.com/random')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundBlendMode: "soft-light",
+      }}
+    >
       <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-[#d9d9d9]">
         <div className="flex items-center gap-2">
           <svg

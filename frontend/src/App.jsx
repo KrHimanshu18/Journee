@@ -5,8 +5,8 @@ import Profile from "./components/Profile";
 function App() {
   return (
     <div>
-      {/* <Home /> */}
-      {/* <Explore /> */}
+      <Home />
+      <Explore />
       <Profile />
     </div>
   );

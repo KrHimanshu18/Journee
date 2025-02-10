@@ -2,7 +2,15 @@ import { React } from "react";
 
 function Home() {
   return (
-    <div className="h-screen bg-[#12202e]">
+    <div
+      className="h-screen bg-[#12202e]"
+      style={{
+        backgroundImage: "url('https://source.unsplash.com/random')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundBlendMode: "soft-light",
+      }}
+    >
       <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white">
         <div className="flex items-center gap-2">
           <svg
@@ -71,7 +79,7 @@ function Home() {
       <section className="flex flex-col items-center text-center py-10 px-6 space-y-8">
         <div className="flex flex-col items-center max-w-lg space-y-5">
           <h2
-            className="text-amber-400 font-bold text-6xl drop-shadow-md"
+            className="text-[rgba(255,215,0,1)] font-bold text-6xl drop-shadow-md"
             style={{ fontFamily: "'Kaushan Script', cursive" }}
           >
             Share Your Thoughts
@@ -87,7 +95,7 @@ function Home() {
           </p>
           <div className="flex gap-5 mt-2">
             <button
-              className="bg-amber-400 text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
+              className="bg-[rgba(255,215,0,1)] text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
               style={{ fontFamily: "'Kaushan Script', cursive" }}
             >
               Login
@@ -103,14 +111,14 @@ function Home() {
 
         <div className="flex flex-col items-center space-y-2">
           <p
-            className="text-amber-300 text-xl font-semibold"
+            className="text-[rgba(255,215,0,1)] text-xl font-semibold"
             style={{ fontFamily: "'Kaushan Script', cursive" }}
           >
             "Success is not the key to happiness. Happiness is the key to
             success."
           </p>
           <h2
-            className="text-amber-400 text-2xl font-semibold"
+            className="text-[rgba(255,215,0,1)] text-2xl font-semibold"
             style={{ fontFamily: "'Kaushan Script', cursive" }}
           >
             Albert Schweitzer
@@ -151,6 +159,7 @@ function Home() {
             </a>
           </div>
         </div>
+
         <div className="flex justify-center">
           <p
             className="font-semibold text-sm text-white opacity-80 transition-opacity duration-300 hover:opacity-100"
