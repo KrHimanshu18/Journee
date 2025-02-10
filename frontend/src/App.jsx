@@ -6,8 +6,8 @@ function App() {
   return (
     <div>
       <Home />
-      <Explore />
-      <Profile />
+      {/* <Explore /> */}
+      {/* <Profile /> */}
     </div>
   );
 }

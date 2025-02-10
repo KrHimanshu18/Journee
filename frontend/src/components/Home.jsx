@@ -2,7 +2,7 @@ import { React } from "react";
 
 function Home() {
   return (
-    <div className="h-screen bg-black">
+    <div className="h-screen bg-[#12202e]">
       <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white">
         <div className="flex items-center gap-2">
           <svg
@@ -68,51 +68,96 @@ function Home() {
         </div>
       </header>
 
-      <section className="flex flex-col justify-center text-center">
-        <div className="flex flex-col justify-center text-center">
-          <h2 className="text-amber-400 font-bold text-3xl">
+      <section className="flex flex-col items-center text-center py-10 px-6 space-y-8">
+        <div className="flex flex-col items-center max-w-lg space-y-5">
+          <h2
+            className="text-amber-400 font-bold text-6xl drop-shadow-md"
+            style={{ fontFamily: "'Kaushan Script', cursive" }}
+          >
             Share Your Thoughts
           </h2>
-          <p className="text-white font-semibold text-xl">
+          <p
+            className="text-white font-medium text-xl leading-relaxed"
+            style={{ fontFamily: "'Kaushan Script', cursive" }}
+          >
             Easily write, edit, and share your ideas with the world. Our app
             lets you create content effortlessly and publish it online. Connect
-            with others, express your thoughts, and inspire your audience-your
+            with others, express your thoughts, and inspire your audience—your
             voice matters and is just a click away from being heard.
           </p>
-          <div className="flex justify-center gap-5">
-            <button className="bg-amber-400">Login</button>
-            <button className="bg-white">Write</button>
+          <div className="flex gap-5 mt-2">
+            <button
+              className="bg-amber-400 text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
+              style={{ fontFamily: "'Kaushan Script', cursive" }}
+            >
+              Login
+            </button>
+            <button
+              className="bg-white text-black font-semibold text-xl py-2 px-6 rounded-full shadow-md transition-all hover:bg-gray-100 hover:scale-105"
+              style={{ fontFamily: "'Kaushan Script', cursive" }}
+            >
+              Write
+            </button>
           </div>
         </div>
 
-        <div className="flex flex-col justify-center text-center">
-          <p className="text-center text-amber-300 text-xs font-semibold">
-            Success is not the key to happiness. Happiness is the key to
-            success.
+        <div className="flex flex-col items-center space-y-2">
+          <p
+            className="text-amber-300 text-xl font-semibold"
+            style={{ fontFamily: "'Kaushan Script', cursive" }}
+          >
+            "Success is not the key to happiness. Happiness is the key to
+            success."
           </p>
-          <h2 className="text-amber-400 text-xl font-semibold">
+          <h2
+            className="text-amber-400 text-2xl font-semibold"
+            style={{ fontFamily: "'Kaushan Script', cursive" }}
+          >
             Albert Schweitzer
           </h2>
         </div>
       </section>
 
-      <footer className="flex flex-col justify-center text-center">
-        <div className="flex justify-center gap-3">
-          <a href="" className="font-semibold text-xs text-white">
-            Home
-          </a>
-          <a href="" className="font-semibold text-xs text-white">
-            Features
-          </a>
-          <a href="" className="font-semibold text-xs text-white">
-            About
-          </a>
-          <a href="" className="font-semibold text-xs text-white">
-            FAQs
-          </a>
+      <footer className="flex flex-col justify-center items-center text-center py-3 space-y-3 w-full">
+        <div className="w-full border-b-2 border-white pb-3">
+          <div className="flex justify-center gap-5">
+            <a
+              href="#"
+              className="font-semibold text-sm text-white transition-all duration-300 hover:text-amber-400 hover:scale-105"
+              style={{ fontFamily: "'Sansita Swashed', cursive" }}
+            >
+              Home
+            </a>
+            <a
+              href="#"
+              className="font-semibold text-sm text-white transition-all duration-300 hover:text-amber-400 hover:scale-105"
+              style={{ fontFamily: "'Sansita Swashed', cursive" }}
+            >
+              Features
+            </a>
+            <a
+              href="#"
+              className="font-semibold text-sm text-white transition-all duration-300 hover:text-amber-400 hover:scale-105"
+              style={{ fontFamily: "'Sansita Swashed', cursive" }}
+            >
+              About
+            </a>
+            <a
+              href="#"
+              className="font-semibold text-sm text-white transition-all duration-300 hover:text-amber-400 hover:scale-105"
+              style={{ fontFamily: "'Sansita Swashed', cursive" }}
+            >
+              FAQs
+            </a>
+          </div>
         </div>
         <div className="flex justify-center">
-          <p className="font-semibold text-xs text-white">©2025 Company, Inc</p>
+          <p
+            className="font-semibold text-sm text-white opacity-80 transition-opacity duration-300 hover:opacity-100"
+            style={{ fontFamily: "'Sansita Swashed', cursive" }}
+          >
+            ©2025 Company, Inc
+          </p>
         </div>
       </footer>
     </div>
