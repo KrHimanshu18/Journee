@@ -69,7 +69,7 @@ function Profile() {
       </header>
 
       <section className="flex flex-col justify-center">
-        <div className="flex flex-wrap md:flex-nowrap justify-between items-center p-6 rounded-2xl w-full mx-auto space-y-6 md:space-y-0 my-10">
+        <div className="flex flex-wrap md:flex-nowrap justify-between items-center px-6 py-10 rounded-2xl w-full mx-auto space-y-6 md:space-y-0 my-12">
           <div className="flex flex-col items-center md:items-start space-y-4">
             <div className="flex items-center space-x-6">
               <svg
@@ -121,10 +121,7 @@ function Profile() {
             <h2 className="bg-white text-black font-bold text-xl py-2 w-full rounded-t-lg">
               I Think...
             </h2>
-            <p className="text-white font-semibold text-lg bg-[#12202e]">
-              Success is not final, failure is not fatal: it is the courage to
-              continue that counts.
-            </p>
+            <textarea name="" id="" rows={12} className="w-full"></textarea>
             <button className="bg-amber-300 text-black font-bold text-lg px-6 py-2 w-full rounded-b-lg hover:bg-amber-400 transition duration-300">
               Post
             </button>
