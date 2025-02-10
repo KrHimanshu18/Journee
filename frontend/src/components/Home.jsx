@@ -5,7 +5,7 @@ function Home() {
     <div
       className="h-screen bg-[#12202e]"
       style={{
-        backgroundImage: "url('https://source.unsplash.com/random')",
+        backgroundImage: "url('src/components/assets/bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundBlendMode: "soft-light",
