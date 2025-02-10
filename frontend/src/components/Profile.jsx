@@ -69,13 +69,13 @@ function Profile() {
       </header>
 
       <section className="flex flex-col justify-center">
-        <div className="flex flex-wrap md:flex-nowrap justify-between items-center px-6 py-10 rounded-2xl w-full mx-auto space-y-6 md:space-y-0 my-12">
+        <div className="flex flex-wrap md:flex-nowrap justify-between px-6 py-10 rounded-2xl w-full mx-auto space-y-6 md:space-y-0 my-12">
           <div className="flex flex-col items-center md:items-start space-y-4">
             <div className="flex items-center space-x-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="60"
-                height="60"
+                width="100"
+                height="100"
                 viewBox="0 0 24 24"
                 className="text-amber-300"
               >
@@ -86,22 +86,22 @@ function Profile() {
                   href="#"
                   className="flex flex-col hover:text-amber-300 transition"
                 >
-                  <p className="font-semibold text-white text-lg">Post</p>
-                  <p className="font-semibold text-white text-lg">2</p>
+                  <p className="font-semibold text-white text-2xl">Post</p>
+                  <p className="font-semibold text-white text-2xl">2</p>
                 </a>
                 <a
                   href="#"
                   className="flex flex-col hover:text-amber-300 transition"
                 >
-                  <p className="font-semibold text-white text-lg">Followers</p>
-                  <p className="font-semibold text-white text-lg">12</p>
+                  <p className="font-semibold text-white text-2xl">Followers</p>
+                  <p className="font-semibold text-white text-2xl">12</p>
                 </a>
                 <a
                   href="#"
                   className="flex flex-col hover:text-amber-300 transition"
                 >
-                  <p className="font-semibold text-white text-lg">Following</p>
-                  <p className="font-semibold text-white text-lg">4</p>
+                  <p className="font-semibold text-white text-2xl">Following</p>
+                  <p className="font-semibold text-white text-2xl">4</p>
                 </a>
               </div>
             </div>
@@ -110,7 +110,7 @@ function Profile() {
               <h2 className="text-amber-300 font-bold text-2xl">
                 @Kr_Himanshu
               </h2>
-              <p className="text-white font-medium">
+              <p className="text-white font-medium text-xl w-[80%]">
                 Web Developer, Creating interactive and responsive web page
                 designs.
               </p>
@@ -121,7 +121,7 @@ function Profile() {
             <h2 className="bg-white text-black font-bold text-xl py-2 w-full rounded-t-lg">
               I Think...
             </h2>
-            <textarea name="" id="" rows={12} className="w-full"></textarea>
+            <textarea name="" id="" rows={12} className="w-[99%]"></textarea>
             <button className="bg-amber-300 text-black font-bold text-lg px-6 py-2 w-full rounded-b-lg hover:bg-amber-400 transition duration-300">
               Post
             </button>
