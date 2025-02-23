@@ -1,6 +1,9 @@
 import { React } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Explore() {
+  const navigate = useNavigate();
+
   return (
     <div
       className="h-screen bg-[#12202e]"
@@ -34,23 +37,35 @@ function Explore() {
         </div>
         <div className="flex items-center gap-6">
           <a
-            href=""
             style={{ fontFamily: "Montserrat, sans-serif" }}
             className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            onClick={() => {
+              navigate("/", {
+                replace: true,
+              });
+            }}
           >
             Home
           </a>
           <a
-            href=""
             style={{ fontFamily: "Montserrat, sans-serif" }}
             className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            onClick={() => {
+              navigate("/explore", {
+                replace: true,
+              });
+            }}
           >
             Explore
           </a>
           <a
-            href=""
             style={{ fontFamily: "Montserrat, sans-serif" }}
             className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            onClick={() => {
+              navigate("/profile", {
+                replace: true,
+              });
+            }}
           >
             Profile
           </a>
