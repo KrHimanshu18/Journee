@@ -6,7 +6,7 @@ function Profile() {
 
   return (
     <div
-      className="bg-[#12202e]"
+      className="bg-[#12202e] min-h-screen"
       style={{
         backgroundImage: "url('src/components/assets/bg.png')",
         backgroundSize: "cover",

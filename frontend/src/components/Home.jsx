@@ -6,7 +6,7 @@ function Home() {
 
   return (
     <div
-      className="bg-[#12202e] h-screen"
+      className="bg-[#12202e] min-h-screen"
       style={{
         backgroundImage: "url('src/components/assets/bg.png')",
         backgroundSize: "cover",
