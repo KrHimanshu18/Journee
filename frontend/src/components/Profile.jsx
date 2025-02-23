@@ -158,7 +158,7 @@ function Profile() {
               style={{ fontFamily: "PT Serif, serif" }}
             ></textarea>
             <button
-              className="bg-amber-300 font-bold text-black text-2xl px-6 py-2 w-full rounded-b-xl hover:bg-amber-400 transition duration-300"
+              className="bg-amber-300 cursor-pointer font-bold text-black text-2xl px-6 py-2 w-full rounded-b-xl hover:bg-amber-400 transition duration-300"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               Post
