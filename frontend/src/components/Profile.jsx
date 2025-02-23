@@ -104,7 +104,7 @@ function Profile() {
                   className="flex flex-col hover:text-amber-300 transition"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  <p className="text-white font-medium text-2xl">Post</p>
+                  <p className="text-white font-bold text-2xl">Post</p>
                   <p className="text-white font-medium text-2xl">2</p>
                 </a>
                 <a
@@ -112,7 +112,7 @@ function Profile() {
                   className="flex flex-col hover:text-amber-300 transition"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  <p className="text-white font-medium text-2xl">Followers</p>
+                  <p className="text-white font-bold text-2xl">Followers</p>
                   <p className="text-white font-medium text-2xl">12</p>
                 </a>
                 <a
@@ -120,7 +120,7 @@ function Profile() {
                   className="flex flex-col hover:text-amber-300 transition"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  <p className="text-white font-medium text-2xl">Following</p>
+                  <p className="text-white font-bold text-2xl">Following</p>
                   <p className="text-white font-medium text-2xl">4</p>
                 </a>
               </div>
@@ -166,7 +166,7 @@ function Profile() {
           </div>
         </div>
 
-        <div className="flex gap-6 mx-12 my-4">
+        <div className="flex gap-6 mx-12 my-4 pb-10">
           <div className="flex flex-col border border-gray-300 rounded-xl shadow-md">
             <h2
               className="bg-white font-semibold text-black text-xl px-6 py-2 rounded-t-md"

@@ -6,7 +6,7 @@ function Home() {
 
   return (
     <div
-      className="bg-[#12202e]"
+      className="bg-[#12202e] h-screen"
       style={{
         backgroundImage: "url('src/components/assets/bg.png')",
         backgroundSize: "cover",
@@ -99,7 +99,7 @@ function Home() {
           >
             Easily write, edit, and share your ideas with the world. Our app
             lets you create content effortlessly and publish it online. Connect
-            with others, express your thoughts, and inspire your audience—your
+            with others, express your thoughts, and inspire your audience-your
             voice matters and is just a click away from being heard.
           </p>
           <div className="flex gap-5 mt-2">
@@ -135,7 +135,7 @@ function Home() {
         </div>
       </section>
 
-      <footer className="flex flex-col justify-center items-center text-center py-3 space-y-3 w-full">
+      <footer className="flex flex-col justify-center items-center text-center w-full">
         <div className="w-full border-b-2 border-white pb-3">
           <div className="flex justify-center gap-5">
             <a
