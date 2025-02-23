@@ -3,7 +3,7 @@ import { React } from "react";
 function Home() {
   return (
     <div
-      className="h-screen bg-[#12202e]"
+      className="bg-[#12202e]"
       style={{
         backgroundImage: "url('src/components/assets/bg.png')",
         backgroundSize: "cover",
@@ -35,41 +35,35 @@ function Home() {
         <div className="flex items-center gap-6">
           <a
             href=""
-            style={{
-              fontFamily: "'Jacques Francois Shadow', cursive",
-            }}
-            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Home
           </a>
           <a
             href=""
-            style={{
-              fontFamily: "'Jacques Francois Shadow', cursive",
-            }}
-            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Explore
           </a>
           <a
             href=""
-            style={{
-              fontFamily: "'Jacques Francois Shadow', cursive",
-            }}
-            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Profile
           </a>
           <a
             href=""
-            style={{ fontFamily: "'Jacques Francois Shadow', cursive" }}
-            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Settings
           </a>
           <button
-            className="bg-[rgba(255,215,0,1)] text-xl px-5 py-2 rounded-lg text-black font-semibold hover:bg-amber-500 transition duration-300"
-            style={{ fontFamily: "'Kaushan Script', cursive" }}
+            className="bg-[rgba(255,215,0,1)] text-xl font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
           >
             Login
           </button>
@@ -85,8 +79,8 @@ function Home() {
             Share Your Thoughts
           </h2>
           <p
-            className="text-white font-medium text-xl leading-relaxed"
-            style={{ fontFamily: "'Kaushan Script', cursive" }}
+            className="text-white font-bold text-xl leading-relaxed"
+            style={{ fontFamily: "PT Serif, serif" }}
           >
             Easily write, edit, and share your ideas with the world. Our app
             lets you create content effortlessly and publish it online. Connect
@@ -96,13 +90,13 @@ function Home() {
           <div className="flex gap-5 mt-2">
             <button
               className="bg-[rgba(255,215,0,1)] text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
-              style={{ fontFamily: "'Kaushan Script', cursive" }}
+              style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               Login
             </button>
             <button
               className="bg-white text-black font-semibold text-xl py-2 px-6 rounded-full shadow-md transition-all hover:bg-gray-100 hover:scale-105"
-              style={{ fontFamily: "'Kaushan Script', cursive" }}
+              style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               Write
             </button>
@@ -132,28 +126,28 @@ function Home() {
             <a
               href="#"
               className="font-semibold text-sm text-white transition-all duration-300 hover:text-amber-400 hover:scale-105"
-              style={{ fontFamily: "'Sansita Swashed', cursive" }}
+              style={{ fontFamily: "Roboto, sans-serif" }}
             >
               Home
             </a>
             <a
               href="#"
               className="font-semibold text-sm text-white transition-all duration-300 hover:text-amber-400 hover:scale-105"
-              style={{ fontFamily: "'Sansita Swashed', cursive" }}
+              style={{ fontFamily: "Roboto, sans-serif" }}
             >
               Features
             </a>
             <a
               href="#"
               className="font-semibold text-sm text-white transition-all duration-300 hover:text-amber-400 hover:scale-105"
-              style={{ fontFamily: "'Sansita Swashed', cursive" }}
+              style={{ fontFamily: "Roboto, sans-serif" }}
             >
               About
             </a>
             <a
               href="#"
               className="font-semibold text-sm text-white transition-all duration-300 hover:text-amber-400 hover:scale-105"
-              style={{ fontFamily: "'Sansita Swashed', cursive" }}
+              style={{ fontFamily: "Roboto, sans-serif" }}
             >
               FAQs
             </a>
@@ -163,7 +157,7 @@ function Home() {
         <div className="flex justify-center">
           <p
             className="font-semibold text-sm text-white opacity-80 transition-opacity duration-300 hover:opacity-100"
-            style={{ fontFamily: "'Sansita Swashed', cursive" }}
+            style={{ fontFamily: "Roboto, sans-serif" }}
           >
             ©2025 Company, Inc
           </p>

@@ -35,41 +35,35 @@ function Profile() {
         <div className="flex items-center gap-6">
           <a
             href=""
-            style={{
-              fontFamily: "'Jacques Francois Shadow', cursive",
-            }}
-            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Home
           </a>
           <a
             href=""
-            style={{
-              fontFamily: "'Jacques Francois Shadow', cursive",
-            }}
-            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Explore
           </a>
           <a
             href=""
-            style={{
-              fontFamily: "'Jacques Francois Shadow', cursive",
-            }}
-            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Profile
           </a>
           <a
             href=""
-            style={{ fontFamily: "'Jacques Francois Shadow', cursive" }}
-            className="text-xl transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Settings
           </a>
           <button
-            className="bg-[rgba(255,215,0,1)] text-xl px-5 py-2 rounded-lg text-black font-semibold hover:bg-amber-500 transition duration-300"
-            style={{ fontFamily: "'Kaushan Script', cursive" }}
+            className="bg-[rgba(255,215,0,1)] text-xl font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
           >
             Login
           </button>
@@ -93,40 +87,40 @@ function Profile() {
                 <a
                   href="#"
                   className="flex flex-col hover:text-amber-300 transition"
-                  style={{ fontFamily: "'Kaushan Script', cursive" }}
+                  style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  <p className="text-white text-2xl">Post</p>
-                  <p className="text-white text-2xl">2</p>
+                  <p className="text-white font-medium text-2xl">Post</p>
+                  <p className="text-white font-medium text-2xl">2</p>
                 </a>
                 <a
                   href="#"
                   className="flex flex-col hover:text-amber-300 transition"
-                  style={{ fontFamily: "'Kaushan Script', cursive" }}
+                  style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  <p className="text-white text-2xl">Followers</p>
-                  <p className="text-white text-2xl">12</p>
+                  <p className="text-white font-medium text-2xl">Followers</p>
+                  <p className="text-white font-medium text-2xl">12</p>
                 </a>
                 <a
                   href="#"
                   className="flex flex-col hover:text-amber-300 transition"
-                  style={{ fontFamily: "'Kaushan Script', cursive" }}
+                  style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  <p className="text-white text-2xl">Following</p>
-                  <p className="text-white text-2xl">4</p>
+                  <p className="text-white font-medium text-2xl">Following</p>
+                  <p className="text-white font-medium text-2xl">4</p>
                 </a>
               </div>
             </div>
 
             <div className="text-center md:text-left">
               <h2
-                className="text-amber-300 text-3xl py-2"
-                style={{ fontFamily: "'Kaushan Script', cursive" }}
+                className="text-amber-300 text-3xl py-2 font-semibold"
+                style={{ fontFamily: "Poppins, sans-serif" }}
               >
                 @Kr_Himanshu
               </h2>
               <p
-                className="text-white font-medium text-2xl w-[80%]"
-                style={{ fontFamily: "'Kaushan Script', cursive" }}
+                className="text-white font-medium text-2xl w-[60%]"
+                style={{ fontFamily: "Poppins, sans-serif" }}
               >
                 Web Developer, Creating interactive and responsive web page
                 designs.
@@ -136,8 +130,8 @@ function Profile() {
 
           <div className="flex flex-col items-center text-center bg-[#d9d9d9] rounded-2xl shadow-md w-full max-w-md border-white">
             <h2
-              className="bg-white text-black text-2xl py-2 w-full rounded-t-xl"
-              style={{ fontFamily: "'Kaushan Script', cursive" }}
+              className="bg-white font-semibold text-black text-2xl py-2 w-full rounded-t-xl text-start px-4"
+              style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               I Think...
             </h2>
@@ -145,12 +139,12 @@ function Profile() {
               name=""
               id=""
               rows={12}
-              className="w-[99%] bg-[#12202e] px-4 py-2 text-[#d9d9d9] text-xl"
-              style={{ fontFamily: "'Kaushan Script', cursive" }}
+              className="w-[99%] bg-[#12202e] font-medium px-4 py-2 text-[#d9d9d9] text-xl"
+              style={{ fontFamily: "PT Serif, serif" }}
             ></textarea>
             <button
-              className="bg-amber-300 text-black text-2xl px-6 py-2 w-full rounded-b-xl hover:bg-amber-400 transition duration-300"
-              style={{ fontFamily: "'Kaushan Script', cursive" }}
+              className="bg-amber-300 font-bold text-black text-2xl px-6 py-2 w-full rounded-b-xl hover:bg-amber-400 transition duration-300"
+              style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               Post
             </button>
@@ -160,14 +154,14 @@ function Profile() {
         <div className="flex gap-6 mx-12 my-4">
           <div className="flex flex-col border border-gray-300 rounded-xl shadow-md">
             <h2
-              className="bg-white text-black text-xl px-6 py-2 rounded-t-md"
-              style={{ fontFamily: "'Kaushan Script', cursive" }}
+              className="bg-white font-semibold text-black text-xl px-6 py-2 rounded-t-md"
+              style={{ fontFamily: "Poppins, sans-serif" }}
             >
               @Kr_Himanshu
             </h2>
             <p
-              className="text-amber-300 text-xl px-6 mt-2 leading-relaxed"
-              style={{ fontFamily: "'Kaushan Script', cursive" }}
+              className="text-amber-300 font-semibold text-xl px-6 mt-2 leading-relaxed"
+              style={{ fontFamily: "PT Serif, serif" }}
             >
               "Success is not merely the result of talent, luck, or
               circumstance, but the relentless pursuit of growth, the resilience
@@ -187,14 +181,14 @@ function Profile() {
 
           <div className="flex flex-col border border-gray-300 rounded-xl shadow-md">
             <h2
-              className="bg-white text-black text-xl px-6 py-2 rounded-t-md"
-              style={{ fontFamily: "'Kaushan Script', cursive" }}
+              className="bg-white font-semibold text-black text-xl px-6 py-2 rounded-t-md"
+              style={{ fontFamily: "Poppins, sans-serif" }}
             >
               @Kr_Himanshu
             </h2>
             <p
-              className="text-amber-300 text-xl px-6 mt-2 leading-relaxed"
-              style={{ fontFamily: "'Kaushan Script', cursive" }}
+              className="text-amber-300 font-semibold text-xl px-6 mt-2 leading-relaxed"
+              style={{ fontFamily: "PT Serif, serif" }}
             >
               "Success is not merely the result of talent, luck, or
               circumstance, but the relentless pursuit of growth, the resilience
