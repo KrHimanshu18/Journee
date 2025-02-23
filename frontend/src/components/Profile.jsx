@@ -38,7 +38,7 @@ function Profile() {
         <div className="flex items-center gap-6">
           <a
             style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/", {
                 replace: true,
@@ -49,7 +49,7 @@ function Profile() {
           </a>
           <a
             style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/explore", {
                 replace: true,
@@ -60,7 +60,7 @@ function Profile() {
           </a>
           <a
             style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/profile", {
                 replace: true,
@@ -72,12 +72,12 @@ function Profile() {
           <a
             href=""
             style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Settings
           </a>
           <button
-            className="bg-[rgba(255,215,0,1)] text-xl font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
+            className="bg-[rgba(255,215,0,1)] text-xl cursor-pointer font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
             Login

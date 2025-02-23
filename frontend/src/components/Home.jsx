@@ -38,7 +38,7 @@ function Home() {
         <div className="flex items-center gap-6">
           <a
             style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/", {
                 replace: true,
@@ -49,9 +49,9 @@ function Home() {
           </a>
           <a
             style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
-              navigate("./explore", {
+              navigate("/explore", {
                 replace: true,
               });
             }}
@@ -60,7 +60,7 @@ function Home() {
           </a>
           <a
             style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/profile", {
                 replace: true,
@@ -72,12 +72,12 @@ function Home() {
           <a
             href=""
             style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Settings
           </a>
           <button
-            className="bg-[rgba(255,215,0,1)] text-xl font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
+            className="bg-[rgba(255,215,0,1)] text-xl cursor-pointer font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
             Login
@@ -104,13 +104,13 @@ function Home() {
           </p>
           <div className="flex gap-5 mt-2">
             <button
-              className="bg-[rgba(255,215,0,1)] text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
+              className="bg-[rgba(255,215,0,1)] cursor-pointer text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               Login
             </button>
             <button
-              className="bg-white text-black font-semibold text-xl py-2 px-6 rounded-full shadow-md transition-all hover:bg-gray-100 hover:scale-105"
+              className="cursor-pointer bg-white text-black font-semibold text-xl py-2 px-6 rounded-full shadow-md transition-all hover:bg-gray-100 hover:scale-105"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               Write
