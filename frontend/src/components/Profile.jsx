@@ -6,6 +6,9 @@ import Login from "./Login";
 function Profile() {
   const navigate = useNavigate();
   const { username } = useContext(LoginContext);
+  const { post } = useContext(LoginContext);
+  const { follower } = useContext(LoginContext);
+  const { following } = useContext(LoginContext);
 
   return (
     <div
@@ -111,7 +114,7 @@ function Profile() {
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
                   <p className="text-white font-bold text-2xl">Post</p>
-                  <p className="text-white font-medium text-2xl">2</p>
+                  <p className="text-white font-medium text-2xl">{post}</p>
                 </a>
                 <a
                   href="#"
@@ -119,7 +122,7 @@ function Profile() {
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
                   <p className="text-white font-bold text-2xl">Followers</p>
-                  <p className="text-white font-medium text-2xl">12</p>
+                  <p className="text-white font-medium text-2xl">{follower}</p>
                 </a>
                 <a
                   href="#"
@@ -127,7 +130,7 @@ function Profile() {
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
                   <p className="text-white font-bold text-2xl">Following</p>
-                  <p className="text-white font-medium text-2xl">4</p>
+                  <p className="text-white font-medium text-2xl">{following}</p>
                 </a>
               </div>
             </div>

@@ -8,9 +8,20 @@ import { LoginContext } from "./context/LoginContext";
 
 function App() {
   const [username, setUsername] = useState("Guest User");
+  const [post, setPost] = useState(0);
+  const [follower, setFollower] = useState(0);
+  const [following, setFollowing] = useState(0);
+
   return (
     <div>
-      <LoginContext.Provider value={{ username, setUsername }}>
+      <LoginContext.Provider
+        value={
+          ({ username, setUsername },
+          { post, setPost },
+          { follower, setFollower },
+          { following, setFollowing })
+        }
+      >
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
