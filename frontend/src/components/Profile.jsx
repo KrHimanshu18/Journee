@@ -1,8 +1,11 @@
-import { React } from "react";
+import { React, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../context/LoginContext";
+import Login from "./Login";
 
 function Profile() {
   const navigate = useNavigate();
+  const { username } = useContext(LoginContext);
 
   return (
     <div
@@ -79,6 +82,9 @@ function Profile() {
           <button
             className="bg-[rgba(255,215,0,1)] text-xl cursor-pointer font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
             style={{ fontFamily: "Montserrat, sans-serif" }}
+            onClick={() => {
+              navigate("/login");
+            }}
           >
             Login
           </button>
@@ -131,7 +137,7 @@ function Profile() {
                 className="text-amber-300 text-3xl py-2 font-semibold"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
-                @Kr_Himanshu
+                @{username}
               </h2>
               <p
                 className="text-white font-medium text-2xl w-[60%]"

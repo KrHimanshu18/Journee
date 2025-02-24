@@ -79,6 +79,9 @@ function Home() {
           <button
             className="bg-[rgba(255,215,0,1)] text-xl cursor-pointer font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
             style={{ fontFamily: "Montserrat, sans-serif" }}
+            onClick={() => {
+              navigate("/login");
+            }}
           >
             Login
           </button>
@@ -106,12 +109,20 @@ function Home() {
             <button
               className="bg-[rgba(255,215,0,1)] cursor-pointer text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
               style={{ fontFamily: "Montserrat, sans-serif" }}
+              onClick={() => {
+                navigate("/login");
+              }}
             >
               Login
             </button>
             <button
               className="cursor-pointer bg-white text-black font-semibold text-xl py-2 px-6 rounded-full shadow-md transition-all hover:bg-gray-100 hover:scale-105"
               style={{ fontFamily: "Montserrat, sans-serif" }}
+              onClick={() => {
+                navigate("/profile", {
+                  replace: true,
+                });
+              }}
             >
               Write
             </button>
