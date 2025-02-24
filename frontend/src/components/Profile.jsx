@@ -1,7 +1,6 @@
 import { React, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
-import Login from "./Login";
 
 function Profile() {
   const navigate = useNavigate();
