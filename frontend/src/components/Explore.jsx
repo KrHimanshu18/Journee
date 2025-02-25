@@ -1,8 +1,10 @@
-import { React } from "react";
+import { React, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../context/LoginContext";
 
 function Explore() {
   const navigate = useNavigate();
+  const { username } = useContext(LoginContext);
 
   return (
     <div
@@ -76,15 +78,17 @@ function Explore() {
           >
             Settings
           </a>
-          <button
-            className="bg-[rgba(255,215,0,1)] text-xl cursor-pointer font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            Login
-          </button>
+          {username == "Guest User" && (
+            <button
+              className="bg-[rgba(255,215,0,1)] text-xl cursor-pointer font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
+              style={{ fontFamily: "Montserrat, sans-serif" }}
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Login
+            </button>
+          )}
         </div>
       </header>
 
