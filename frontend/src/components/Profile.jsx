@@ -1,13 +1,15 @@
 import { React, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
+import Post from "./Post";
 
 function Profile() {
   const navigate = useNavigate();
   const { username } = useContext(LoginContext);
-  const { post } = useContext(LoginContext);
+  const { postCount } = useContext(LoginContext);
   const { follower } = useContext(LoginContext);
   const { following } = useContext(LoginContext);
+  const { post } = useContext(LoginContext);
 
   return (
     <div
@@ -113,7 +115,7 @@ function Profile() {
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
                   <p className="text-white font-bold text-2xl">Post</p>
-                  <p className="text-white font-medium text-2xl">{post}</p>
+                  <p className="text-white font-medium text-2xl">{postCount}</p>
                 </a>
                 <a
                   href="#"
@@ -174,60 +176,10 @@ function Profile() {
           </div>
         </div>
 
-        <div className="flex gap-6 mx-12 my-4 pb-10">
-          <div className="flex flex-col border border-gray-300 rounded-xl shadow-md">
-            <h2
-              className="bg-white font-semibold text-black text-xl px-6 py-2 rounded-t-md"
-              style={{ fontFamily: "Poppins, sans-serif" }}
-            >
-              @Kr_Himanshu
-            </h2>
-            <p
-              className="text-amber-300 font-semibold text-xl px-6 mt-2 leading-relaxed"
-              style={{ fontFamily: "PT Serif, serif" }}
-            >
-              "Success is not merely the result of talent, luck, or
-              circumstance, but the relentless pursuit of growth, the resilience
-              to rise after every fall, and the courage to embrace uncertainty.
-              It is forged in the quiet moments of perseverance, the unseen
-              sacrifices, and the unwavering belief that progress, no matter how
-              small, matters. Greatness is not reserved for the chosen few; it
-              belongs to those who dare to dream, work tirelessly, and refuse to
-              surrender to doubt. In the end, the journey defines us, the
-              struggles shape us, and the determination to keep moving forward,
-              despite all odds, is what truly sets us apart."
-            </p>
-            <div className="bg-white text-center text-gray-600 font-medium mt-3 py-2 px-3 border rounded-b-lg cursor-pointer transition-colors hover:bg-gray-100">
-              _
-            </div>
-          </div>
-
-          <div className="flex flex-col border border-gray-300 rounded-xl shadow-md">
-            <h2
-              className="bg-white font-semibold text-black text-xl px-6 py-2 rounded-t-md"
-              style={{ fontFamily: "Poppins, sans-serif" }}
-            >
-              @Kr_Himanshu
-            </h2>
-            <p
-              className="text-amber-300 font-semibold text-xl px-6 mt-2 leading-relaxed"
-              style={{ fontFamily: "PT Serif, serif" }}
-            >
-              "Success is not merely the result of talent, luck, or
-              circumstance, but the relentless pursuit of growth, the resilience
-              to rise after every fall, and the courage to embrace uncertainty.
-              It is forged in the quiet moments of perseverance, the unseen
-              sacrifices, and the unwavering belief that progress, no matter how
-              small, matters. Greatness is not reserved for the chosen few; it
-              belongs to those who dare to dream, work tirelessly, and refuse to
-              surrender to doubt. In the end, the journey defines us, the
-              struggles shape us, and the determination to keep moving forward,
-              despite all odds, is what truly sets us apart."
-            </p>
-            <div className="bg-white text-center text-gray-600 font-medium mt-3 py-2 px-3 border rounded-b-lg cursor-pointer transition-colors hover:bg-gray-100">
-              _
-            </div>
-          </div>
+        <div className="grid grid-cols-2 gap-6 mx-12 my-4 pb-10 justify-center">
+          {post.map((item, index) => (
+            <Post key={index} username={username} content={item.content} />
+          ))}
         </div>
       </section>
     </div>

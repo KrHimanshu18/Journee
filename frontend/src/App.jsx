@@ -8,19 +8,31 @@ import { LoginContext } from "./context/LoginContext";
 
 function App() {
   const [username, setUsername] = useState("Guest User");
-  const [post, setPost] = useState(0);
-  const [follower, setFollower] = useState(0);
-  const [following, setFollowing] = useState(0);
+  const [postCount, setPostCount] = useState("0");
+  const [follower, setFollower] = useState("0");
+  const [following, setFollowing] = useState("0");
+  const [post, setPost] = useState([
+    { content: "This is the first post" },
+    { content: "This is the second post" },
+    { content: "This is the third post" },
+    { content: "This is the fourth post" },
+  ]);
 
   return (
     <div>
       <LoginContext.Provider
-        value={
-          ({ username, setUsername },
-          { post, setPost },
-          { follower, setFollower },
-          { following, setFollowing })
-        }
+        value={{
+          username,
+          setUsername,
+          postCount,
+          setPostCount,
+          follower,
+          setFollower,
+          following,
+          setFollowing,
+          post,
+          setPost,
+        }}
       >
         <Router>
           <Routes>
