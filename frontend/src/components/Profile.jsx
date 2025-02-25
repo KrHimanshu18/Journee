@@ -21,7 +21,7 @@ function Profile() {
         backgroundBlendMode: "soft-light",
       }}
     >
-      <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white">
+      <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white fixed w-full">
         <div className="flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@ function Profile() {
         </div>
       </header>
 
-      <section className="flex flex-col">
+      <section className="flex flex-col pt-[100px]">
         <div className="flex flex-wrap md:flex-nowrap justify-between px-6 py-4 *:rounded-2xl w-full mx-auto space-y-6 md:space-y-0 my-12">
           <div className="flex flex-col items-center md:items-start space-y-4">
             <div className="flex items-center space-x-6">

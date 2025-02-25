@@ -18,7 +18,7 @@ function Explore() {
         backgroundBlendMode: "soft-light",
       }}
     >
-      <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white">
+      <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white fixed w-full">
         <div className="flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ function Explore() {
         </div>
       </header>
 
-      <section className="px-10 mx-28">
+      <section className="px-10 mx-28 pt-[100px]">
         {post.map((item, index) => (
           <ExpPost key={index} username={username} content={item.content} />
         ))}

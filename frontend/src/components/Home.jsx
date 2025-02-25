@@ -16,7 +16,7 @@ function Home() {
         backgroundBlendMode: "soft-light",
       }}
     >
-      <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white">
+      <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white fixed w-full">
         <div className="flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,7 @@ function Home() {
         </div>
       </header>
 
-      <section className="flex flex-col items-center text-center py-10 px-6 space-y-8">
+      <section className="flex flex-col items-center text-center py-10 px-6 space-y-8 pt-[100px]">
         <div className="flex flex-col items-center max-w-lg space-y-5">
           <h2
             className="text-[rgba(255,215,0,1)] font-bold text-6xl drop-shadow-md"
