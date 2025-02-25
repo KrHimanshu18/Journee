@@ -41,8 +41,7 @@ function Explore() {
         </div>
         <div className="flex items-center gap-6">
           <a
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/", {
                 replace: true,
@@ -52,8 +51,7 @@ function Explore() {
             Home
           </a>
           <a
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/explore", {
                 replace: true,
@@ -63,8 +61,7 @@ function Explore() {
             Explore
           </a>
           <a
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/profile", {
                 replace: true,
@@ -75,15 +72,13 @@ function Explore() {
           </a>
           <a
             href=""
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="text-xl font-bold cursor-pointer transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Settings
           </a>
           {username == "Guest User" && (
             <button
-              className="bg-[rgba(255,215,0,1)] text-xl cursor-pointer font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
-              style={{ fontFamily: "Montserrat, sans-serif" }}
+              className="bg-[rgba(255,215,0,1)] text-xl cursor-pointer font-['Montserrat'] font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
               onClick={() => {
                 navigate("/login");
               }}
