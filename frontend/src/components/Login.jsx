@@ -8,7 +8,15 @@ function Login() {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="bg-[#12202e] min-h-screen flex items-center justify-center px-4 py-12">
+    <div
+      className="bg-[#12202e] min-h-screen flex items-center justify-center px-4 py-12"
+      style={{
+        backgroundImage: "url('src/components/assets/bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundBlendMode: "soft-light",
+      }}
+    >
       <div className="w-full max-w-md bg-[#212529]/95 backdrop-blur-sm rounded-xl shadow-xl p-6 sm:p-8 animate-fade-in">
         {/* Header */}
         <div className="flex items-center justify-center gap-3 mb-8">
