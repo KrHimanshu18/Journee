@@ -1,8 +1,8 @@
-import { React, useContext, useState } from "react";
+import { React, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import Post from "./Post";
-import { Menu, X } from "lucide-react"; // Icons for the dropdown toggle
+import { Menu, X } from "lucide-react";
 
 function Profile() {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function Profile() {
         backgroundBlendMode: "soft-light",
       }}
     >
-      <header className="flex justify-between items-center px-6 py-2 md:px-8 md:py-4 bg-[#212529] shadow-md text-white fixed w-full">
+      <header className="flex justify-between items-center px-6 py-2 md:px-8 md:py-4 bg-[#212529] shadow-md text-white fixed w-full z-10">
         <div className="flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,9 +52,9 @@ function Profile() {
 
         {/* Navigation Links */}
         <div
-          className={`sm:flex items-center sm:gap-4 md:gap-6 ${
+          className={`z-10 sm:flex items-center sm:gap-4 md:gap-6 ${
             isOpen
-              ? "absolute top-full left-0 w-full bg-[#212529] flex flex-col shadow-md p-4 rounded-b-md"
+              ? "absolute top-full left-0 w-full bg-[#212529] flex flex-col gap-2 shadow-md p-4 rounded-b-md"
               : "hidden"
           } sm:flex`}
         >
