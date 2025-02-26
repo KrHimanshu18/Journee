@@ -84,23 +84,6 @@ function Explore() {
           >
             Profile
           </a>
-          <a
-            href="#"
-            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
-          >
-            Settings
-          </a>
-          {username === "Guest User" && (
-            <button
-              className="bg-[rgba(255,215,0,1)] xs:text-xs md:text-xl cursor-pointer font-['Montserrat'] font-bold px-3 md:px-5 md:py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
-              onClick={() => {
-                navigate("/login");
-                setIsOpen(false);
-              }}
-            >
-              Login
-            </button>
-          )}
         </div>
       </header>
 

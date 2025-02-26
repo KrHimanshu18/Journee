@@ -10,6 +10,7 @@ function Home() {
   const [fadeState, setFadeState] = useState("fade-in");
   const [currInd, setCurrInd] = useState(0);
   const length = quotes.length;
+  const isLoggedIn = username !== "Guest User";
 
   useEffect(() => {
     const quoteInterval = setInterval(() => {
@@ -65,7 +66,7 @@ function Home() {
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Navigation Links */}
+        {/* Navigation Links or Login Button */}
         <div
           className={`z-10 sm:flex items-center sm:gap-4 md:gap-6 ${
             isOpen
@@ -73,42 +74,39 @@ function Home() {
               : "hidden"
           } sm:flex`}
         >
-          <a
-            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
-            onClick={() => {
-              navigate("/", { replace: true });
-              setIsOpen(false);
-            }}
-          >
-            Home
-          </a>
-          <a
-            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
-            onClick={() => {
-              navigate("/explore", { replace: true });
-              setIsOpen(false);
-            }}
-          >
-            Explore
-          </a>
-          <a
-            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
-            onClick={() => {
-              navigate("/profile", { replace: true });
-              setIsOpen(false);
-            }}
-          >
-            Profile
-          </a>
-          <a
-            href="#"
-            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
-          >
-            Settings
-          </a>
-          {username === "Guest User" && (
+          {isLoggedIn ? (
+            <>
+              <a
+                className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+                onClick={() => {
+                  navigate("/", { replace: true });
+                  setIsOpen(false);
+                }}
+              >
+                Home
+              </a>
+              <a
+                className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+                onClick={() => {
+                  navigate("/explore", { replace: true });
+                  setIsOpen(false);
+                }}
+              >
+                Explore
+              </a>
+              <a
+                className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+                onClick={() => {
+                  navigate("/profile", { replace: true });
+                  setIsOpen(false);
+                }}
+              >
+                Profile
+              </a>
+            </>
+          ) : (
             <button
-              className="bg-[rgba(255,215,0,1)] xs:text-xs md:text-xl cursor-pointer font-['Montserrat'] font-bold px-3 md:px-5 md:py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
+              className="bg-[rgba(255,215,0,1)] xs:text-xs md:text-xl cursor-pointer font-['Montserrat'] font-bold px-3 md:px-5 md:py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300 w-full sm:w-auto"
               onClick={() => {
                 navigate("/login");
                 setIsOpen(false);
@@ -138,24 +136,40 @@ function Home() {
             voice matters and is just a click away from being heard.
           </p>
           <div className="flex gap-5 mt-2">
-            <button
-              className="bg-[rgba(255,215,0,1)] cursor-pointer font-['Montserrat'] xs:text-xs md:text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              Login
-            </button>
-            <button
-              className="cursor-pointer bg-white text-black font-['Montserrat'] font-semibold xs:text-xs md:text-xl py-2 px-6 rounded-full shadow-md transition-all hover:bg-gray-100 hover:scale-105"
-              onClick={() => {
-                navigate("/profile", {
-                  replace: true,
-                });
-              }}
-            >
-              Write
-            </button>
+            {username === "Guest User" && (
+              <button
+                className="bg-[rgba(255,215,0,1)] cursor-pointer font-['Montserrat'] xs:text-xs md:text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Login
+              </button>
+            )}
+            {username !== "Guest User" && (
+              <div className="flex gap-5 mt-2">
+                <button
+                  className="cursor-pointer bg-white text-black font-['Montserrat'] font-semibold xs:text-xs md:text-xl py-2 px-6 rounded-full shadow-md transition-all hover:bg-gray-100 hover:scale-105"
+                  onClick={() => {
+                    navigate("/profile", {
+                      replace: true,
+                    });
+                  }}
+                >
+                  Write
+                </button>
+                <button
+                  className="bg-[rgba(255,215,0,1)] cursor-pointer font-['Montserrat'] xs:text-xs md:text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
+                  onClick={() => {
+                    navigate("/explore", {
+                      replace: true,
+                    });
+                  }}
+                >
+                  Explore
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
