@@ -10,7 +10,7 @@ function Explore() {
 
   return (
     <div
-      className="bg-[#12202e] min-h-screen"
+      className="bg-[#12202e] min-h-screen w-full"
       style={{
         backgroundImage: "url('src/components/assets/bg.png')",
         backgroundSize: "cover",
@@ -18,7 +18,7 @@ function Explore() {
         backgroundBlendMode: "soft-light",
       }}
     >
-      <header className="flex justify-between items-center px-6 py-2 md:px-8 md:py-4 bg-[#212529] shadow-md text-white fixed w-full z-10">
+      <header className="flex justify-between items-center px-4 py-2 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-2 md:py-4 bg-[#212529] shadow-md text-white fixed w-full top-0 z-10">
         <div className="flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -26,12 +26,12 @@ function Explore() {
             height="48"
             viewBox="0 0 24 24"
             style={{ fill: "rgba(255, 215, 0, 1)" }}
-            className="w-[40px] h-[40px]"
+            className="w-8 h-8 sm:w-10 sm:h-10 md:w-[40px] md:h-[40px]"
           >
             <path d="M6.012 18H21V4a2 2 0 0 0-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1zM8 6h9v2H8V6z"></path>
           </svg>
           <h1
-            className="text-2xl md:text-4xl"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl"
             style={{
               fontFamily: "'Jacques Francois Shadow', cursive",
               color: "rgba(255, 215, 0, 1)",
@@ -51,14 +51,14 @@ function Explore() {
 
         {/* Navigation Links */}
         <div
-          className={`z-10 sm:flex items-center sm:gap-4 md:gap-6 ${
+          className={`z-10 sm:flex items-center sm:gap-2 md:gap-4 lg:gap-6 ${
             isOpen
               ? "absolute top-full left-0 w-full bg-[#212529] flex flex-col gap-2 shadow-md p-4 rounded-b-md"
               : "hidden"
           } sm:flex`}
         >
           <a
-            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-base sm:text-lg md:text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/", { replace: true });
               setIsOpen(false);
@@ -67,7 +67,7 @@ function Explore() {
             Home
           </a>
           <a
-            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-base sm:text-lg md:text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/explore", { replace: true });
               setIsOpen(false);
@@ -76,7 +76,7 @@ function Explore() {
             Explore
           </a>
           <a
-            className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            className="text-base sm:text-lg md:text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
               navigate("/profile", { replace: true });
               setIsOpen(false);
@@ -87,7 +87,7 @@ function Explore() {
         </div>
       </header>
 
-      <section className="px-2 md:mx-20 pt-[20px] md:pt-[60px]">
+      <section className="px-2 sm:px-4 md:px-8 lg:px-16 xl:px-20 pt-[60px] sm:pt-[80px] md:pt-[100px] lg:pt-[120px]">
         {post.map((item, index) => (
           <ExpPost key={index} username={username} content={item.content} />
         ))}
