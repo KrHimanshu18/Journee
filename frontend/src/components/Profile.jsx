@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import { React, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import Post from "./Post";
@@ -6,8 +6,28 @@ import { Menu, X } from "lucide-react";
 
 function Profile() {
   const navigate = useNavigate();
-  const { username, postCount, follower, following, post, isOpen, setIsOpen } =
-    useContext(LoginContext);
+  const {
+    username,
+    setUsername,
+    postCount,
+    follower,
+    following,
+    post,
+    isOpen,
+    setIsOpen,
+  } = useContext(LoginContext);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
+  const settingsOptions = [
+    "Edit Profile",
+    "Saved",
+    "Account Privacy",
+    "Help",
+    "Privacy Center",
+    "Account Status",
+    "About",
+    "Log out",
+  ];
 
   return (
     <div
@@ -86,8 +106,8 @@ function Profile() {
             Profile
           </a>
           <a
-            href="#"
             className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
+            onClick={() => setIsSettingsOpen(true)}
           >
             Settings
           </a>
@@ -104,6 +124,54 @@ function Profile() {
           )}
         </div>
       </header>
+
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-[#212529] z-20 transform transition-transform duration-300 ease-in-out ${
+          isSettingsOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col h-full">
+          <div className="flex justify-between items-center p-4 border-b border-gray-700">
+            <h3 className="text-xl font-bold text-white font-['Montserrat']">
+              Settings
+            </h3>
+            <button
+              onClick={() => setIsSettingsOpen(false)}
+              className="text-white hover:text-amber-300 cursor-pointer"
+            >
+              <X size={24} />
+            </button>
+          </div>
+          <div className="flex-1 p-4">
+            {settingsOptions.map((option, index) => (
+              <button
+                key={index}
+                className="cursor-pointer w-full text-left py-3 px-4 text-white font-['Montserrat'] text-lg hover:bg-[#2d3748] hover:text-amber-300 transition-colors duration-200 rounded-md"
+                onClick={() => {
+                  // Add specific navigation logic here if needed
+                  if (option === "Log out") {
+                    // Add logout logic here
+                    console.log("Logging out...");
+                    setUsername("Guest User");
+                    navigate("/", { replace: true });
+                  }
+                  setIsSettingsOpen(false);
+                }}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Overlay for curtain effect */}
+      {isSettingsOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-10"
+          onClick={() => setIsSettingsOpen(false)}
+        />
+      )}
 
       <section className="flex flex-col pt-[60px]">
         <div className="flex flex-wrap gap-4 justify-between px-6 py-4 *:rounded-2xl w-full mx-auto space-y-6 md:space-y-0 my-12">
