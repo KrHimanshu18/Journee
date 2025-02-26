@@ -104,7 +104,7 @@ function Home() {
       </header>
 
       <section className="flex flex-col items-center text-center py-10 px-6 space-y-8 pt-[100px]">
-        <div className="flex flex-col items-center max-w-lg space-y-5">
+        <div className="flex flex-col items-center space-y-5">
           <h2
             className="text-[rgba(255,215,0,1)] font-bold text-4xl md:text-6xl drop-shadow-md"
             style={{ fontFamily: "'Kaushan Script', cursive" }}
@@ -112,7 +112,7 @@ function Home() {
             Share Your Thoughts
           </h2>
           <p
-            className="text-white font-bold text-xl md:text-2xl leading-relaxed"
+            className="text-white font-bold text-xl md:text-2xl leading-relaxed w-[75%]"
             style={{ fontFamily: "PT Serif, serif" }}
           >
             Easily write, edit, and share your ideas with the world. Our app

@@ -30,6 +30,9 @@ function App() {
     },
   ]);
   const [isOpen, setIsOpen] = useState(false);
+  const [password, setPassword] = useState("");
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [email, setEmail] = useState("");
 
   return (
     <div>
@@ -47,6 +50,12 @@ function App() {
           setPost,
           isOpen,
           setIsOpen,
+          password,
+          setPassword,
+          isSignUp,
+          setIsSignUp,
+          email,
+          setEmail,
         }}
       >
         <Router>
