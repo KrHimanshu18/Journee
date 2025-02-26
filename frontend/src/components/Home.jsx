@@ -1,11 +1,28 @@
-import { React, useContext } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import { Menu, X } from "lucide-react";
+import "./styles.css";
 
 function Home() {
   const navigate = useNavigate();
-  const { username, isOpen, setIsOpen } = useContext(LoginContext);
+  const { username, isOpen, setIsOpen, quotes } = useContext(LoginContext);
+  const [fadeState, setFadeState] = useState("fade-in");
+  const [currInd, setCurrInd] = useState(0);
+  const length = quotes.length;
+
+  useEffect(() => {
+    const quoteInterval = setInterval(() => {
+      setFadeState("fade-out");
+
+      setTimeout(() => {
+        setCurrInd((prevIndex) => (prevIndex + 1) % length);
+        setFadeState("fade-in");
+      }, 1000);
+    }, 5000);
+
+    return () => clearInterval(quoteInterval);
+  }, [length]);
 
   return (
     <div
@@ -142,19 +159,20 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center space-y-2">
+        <div
+          className={`${fadeState} quote-container flex flex-col items-center space-y-2`}
+        >
           <p
             className="text-[rgba(255,215,0,1)] text-xl md:text-2xl font-semibold"
             style={{ fontFamily: "'Kaushan Script', cursive" }}
           >
-            "Success is not the key to happiness. Happiness is the key to
-            success."
+            {quotes[currInd].quote}
           </p>
           <h2
             className="text-[rgba(255,215,0,1)] text-2xl md:text-4xl font-semibold"
             style={{ fontFamily: "'Kaushan Script', cursive" }}
           >
-            Albert Schweitzer
+            {quotes[currInd].by}
           </h2>
         </div>
       </section>
