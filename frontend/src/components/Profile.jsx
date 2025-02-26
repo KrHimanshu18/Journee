@@ -106,8 +106,8 @@ function Profile() {
       </header>
 
       <section className="flex flex-col pt-[100px]">
-        <div className="flex flex-wrap md:flex-nowrap justify-between px-6 py-4 *:rounded-2xl w-full mx-auto space-y-6 md:space-y-0 my-12">
-          <div className="flex flex-col items-center md:items-start space-y-4">
+        <div className="flex flex-wrap gap-4 justify-between px-6 py-4 *:rounded-2xl w-full mx-auto space-y-6 md:space-y-0 my-12">
+          <div className="flex flex-col items-start space-y-4">
             <div className="flex items-center space-x-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -143,11 +143,11 @@ function Profile() {
               </div>
             </div>
 
-            <div className="text-center md:text-left">
+            <div className="text-left">
               <h2 className="text-amber-300 text-3xl py-2 font-semibold font-['Montserrat']">
                 @{username}
               </h2>
-              <p className="text-white font-medium font-['Montserrat'] text-2xl w-[60%]">
+              <p className="text-white font-medium font-['Montserrat'] text-2xl w-[75%] md:w-[60%]">
                 Web Developer, Creating interactive and responsive web page
                 designs.
               </p>
