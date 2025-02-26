@@ -104,7 +104,7 @@ function Explore() {
         </div>
       </header>
 
-      <section className="px-10 mx-10 md:mx-20 pt-[40px] md:pt-[100px]">
+      <section className="px-2 md:mx-20 pt-[20px] md:pt-[60px]">
         {post.map((item, index) => (
           <ExpPost key={index} username={username} content={item.content} />
         ))}

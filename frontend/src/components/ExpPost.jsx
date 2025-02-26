@@ -2,7 +2,7 @@ import React from "react";
 
 function ExpPost(props) {
   return (
-    <div className="h-[80vh] mt-20">
+    <div className="h-[100vh] md:h-[90vh] mt-20">
       <div className="flex flex-col justify-between text-center border-2 border-white rounded-2xl m-4 bg-gray-900 shadow-lg h-[80%]">
         <div className="flex justify-between items-center mb-3 bg-white rounded-t-2xl px-5 py-2">
           <p className="text-2xl text-black font-['Montserrat'] font-bold">
@@ -15,7 +15,7 @@ function ExpPost(props) {
 
         <div className="flex justify-center">
           <p
-            className="text-2xl text-[#d9d9d9] leading-relaxed px-4 font-bold"
+            className="text-xl md:text-1.5xl text-[#d9d9d9] leading-relaxed px-4 font-bold"
             style={{ fontFamily: "PT Serif, serif" }}
           >
             {props.content}
