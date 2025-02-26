@@ -19,7 +19,7 @@ function Profile() {
         backgroundBlendMode: "soft-light",
       }}
     >
-      <header className="flex justify-between items-center px-6 py-2 md:px-8 md:py-4 bg-[#212529] shadow-md text-white fixed w-full z-10">
+      <header className="flex justify-between items-center px-6 md:px-8 py-4 bg-[#212529] shadow-md text-white fixed w-full z-10">
         <div className="flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@ function Profile() {
         </div>
       </header>
 
-      <section className="flex flex-col pt-[100px]">
+      <section className="flex flex-col pt-[60px]">
         <div className="flex flex-wrap gap-4 justify-between px-6 py-4 *:rounded-2xl w-full mx-auto space-y-6 md:space-y-0 my-12">
           <div className="flex flex-col items-start space-y-4">
             <div className="flex items-center space-x-6">
@@ -171,7 +171,7 @@ function Profile() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 mx-12 my-4 pb-10 justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-6 my-4 pb-10 justify-center">
           {post.map((item, index) => (
             <Post key={index} username={username} content={item.content} />
           ))}
