@@ -29,6 +29,7 @@ function App() {
         "Self-belief is the foundation of success. If you don’t believe in yourself, it’s difficult to convince others to believe in you. Confidence fuels action, and action leads to results. Many successful people started with doubts but pushed forward because they believed in their vision. Challenges will arise, but a strong belief in your abilities will help you overcome obstacles. No dream is too big if you have the courage to chase it. Trust yourself, take the leap, and success will follow.",
     },
   ]);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
@@ -44,6 +45,8 @@ function App() {
           setFollowing,
           post,
           setPost,
+          isOpen,
+          setIsOpen,
         }}
       >
         <Router>

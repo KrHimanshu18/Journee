@@ -4,11 +4,11 @@ import { LoginContext } from "../context/LoginContext";
 
 function Home() {
   const navigate = useNavigate();
-  const { username } = useContext(LoginContext);
+  const { username, isOpen, setIsOpen } = useContext(LoginContext);
 
   return (
     <div
-      className="bg-[#12202e] min-h-screen"
+      className="bg-[#12202e] min-h-screen flex flex-col justify-between"
       style={{
         backgroundImage: "url('src/components/assets/bg.png')",
         backgroundSize: "cover",
@@ -16,7 +16,7 @@ function Home() {
         backgroundBlendMode: "soft-light",
       }}
     >
-      <header className="flex justify-between items-center px-8 py-4 bg-[#212529] shadow-md text-white fixed w-full">
+      <header className="flex justify-between items-center px-6 py-2 md:px-8 md:py-4 bg-[#212529] shadow-md text-white fixed w-full">
         <div className="flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -24,11 +24,12 @@ function Home() {
             height="48"
             viewBox="0 0 24 24"
             style={{ fill: "rgba(255, 215, 0, 1)" }}
+            className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]"
           >
             <path d="M6.012 18H21V4a2 2 0 0 0-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1zM8 6h9v2H8V6z"></path>
           </svg>
           <h1
-            className="text-3xl"
+            className="text-3xl md:text-4xl"
             style={{
               fontFamily: "'Jacques Francois Shadow', cursive",
               color: "rgba(255, 215, 0, 1)",
@@ -37,13 +38,28 @@ function Home() {
             JOURNEE
           </h1>
         </div>
-        <div className="flex items-center gap-6">
+
+        {/* Mobile Menu Button */}
+        <button
+          className="block sm:hidden p-2 text-xl"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Navigation Links */}
+        <div
+          className={`sm:flex items-center sm:gap-4 md:gap-6 ${
+            isOpen
+              ? "absolute top-full left-0 w-full bg-[#212529] flex flex-col shadow-md p-4 rounded-b-md"
+              : "hidden"
+          } sm:flex`}
+        >
           <a
             className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
-              navigate("/", {
-                replace: true,
-              });
+              navigate("/", { replace: true });
+              setIsOpen(false);
             }}
           >
             Home
@@ -51,9 +67,8 @@ function Home() {
           <a
             className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
-              navigate("/explore", {
-                replace: true,
-              });
+              navigate("/explore", { replace: true });
+              setIsOpen(false);
             }}
           >
             Explore
@@ -61,24 +76,24 @@ function Home() {
           <a
             className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
             onClick={() => {
-              navigate("/profile", {
-                replace: true,
-              });
+              navigate("/profile", { replace: true });
+              setIsOpen(false);
             }}
           >
             Profile
           </a>
           <a
-            href=""
+            href="#"
             className="text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
           >
             Settings
           </a>
-          {username == "Guest User" && (
+          {username === "Guest User" && (
             <button
-              className="bg-[rgba(255,215,0,1)] text-xl cursor-pointer font-['Montserrat'] font-bold px-5 py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
+              className="bg-[rgba(255,215,0,1)] xs:text-xs md:text-xl cursor-pointer font-['Montserrat'] font-bold px-3 md:px-5 md:py-2 rounded-lg text-black hover:bg-amber-500 transition duration-300"
               onClick={() => {
                 navigate("/login");
+                setIsOpen(false);
               }}
             >
               Login
@@ -90,13 +105,13 @@ function Home() {
       <section className="flex flex-col items-center text-center py-10 px-6 space-y-8 pt-[100px]">
         <div className="flex flex-col items-center max-w-lg space-y-5">
           <h2
-            className="text-[rgba(255,215,0,1)] font-bold text-6xl drop-shadow-md"
+            className="text-[rgba(255,215,0,1)] font-bold text-4xl md:text-6xl drop-shadow-md"
             style={{ fontFamily: "'Kaushan Script', cursive" }}
           >
             Share Your Thoughts
           </h2>
           <p
-            className="text-white font-bold text-xl leading-relaxed"
+            className="text-white font-bold text-xl md:text-2xl leading-relaxed"
             style={{ fontFamily: "PT Serif, serif" }}
           >
             Easily write, edit, and share your ideas with the world. Our app
@@ -106,7 +121,7 @@ function Home() {
           </p>
           <div className="flex gap-5 mt-2">
             <button
-              className="bg-[rgba(255,215,0,1)] cursor-pointer font-['Montserrat'] text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
+              className="bg-[rgba(255,215,0,1)] cursor-pointer font-['Montserrat'] xs:text-xs md:text-xl text-black font-semibold py-2 px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105"
               onClick={() => {
                 navigate("/login");
               }}
@@ -114,7 +129,7 @@ function Home() {
               Login
             </button>
             <button
-              className="cursor-pointer bg-white text-black font-['Montserrat'] font-semibold text-xl py-2 px-6 rounded-full shadow-md transition-all hover:bg-gray-100 hover:scale-105"
+              className="cursor-pointer bg-white text-black font-['Montserrat'] font-semibold xs:text-xs md:text-xl py-2 px-6 rounded-full shadow-md transition-all hover:bg-gray-100 hover:scale-105"
               onClick={() => {
                 navigate("/profile", {
                   replace: true,
@@ -128,14 +143,14 @@ function Home() {
 
         <div className="flex flex-col items-center space-y-2">
           <p
-            className="text-[rgba(255,215,0,1)] text-xl font-semibold"
+            className="text-[rgba(255,215,0,1)] text-xl md:text-2xl font-semibold"
             style={{ fontFamily: "'Kaushan Script', cursive" }}
           >
             "Success is not the key to happiness. Happiness is the key to
             success."
           </p>
           <h2
-            className="text-[rgba(255,215,0,1)] text-2xl font-semibold"
+            className="text-[rgba(255,215,0,1)] text-2xl md:text-4xl font-semibold"
             style={{ fontFamily: "'Kaushan Script', cursive" }}
           >
             Albert Schweitzer
