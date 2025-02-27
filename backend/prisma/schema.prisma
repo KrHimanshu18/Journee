@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -42,18 +43,18 @@ model Post {
   createdAt DateTime  @default(now())
   authorId  String
   author    User      @relation("UserPosts", fields: [authorId], references: [username])
-  likes     Liked[]   @relation("PostLikes")
-  comments  Comment[] @relation("PostComments")
+  likes     Liked[]   @relation("PostLikes") // Removed onDelete: Cascade
+  comments  Comment[] @relation("PostComments") // Removed onDelete: Cascade
 }
 
 model Comment {
   id        String   @id @default(uuid())
-  comment   String // Renamed from 'comment' to 'content' for consistency
+  comment   String
   createdAt DateTime @default(now())
   userId    String
   postId    String
   author    User     @relation(fields: [userId], references: [username])
-  post      Post     @relation("PostComments", fields: [postId], references: [id])
+  post      Post     @relation("PostComments", fields: [postId], references: [id], onDelete: Cascade) // Moved here
 }
 
 model Liked {
@@ -61,7 +62,7 @@ model Liked {
   userId String
   postId String
   user   User   @relation("UserLikes", fields: [userId], references: [username])
-  post   Post   @relation("PostLikes", fields: [postId], references: [id])
+  post   Post   @relation("PostLikes", fields: [postId], references: [id], onDelete: Cascade) // Moved here
 
   @@unique([userId, postId]) // Prevent duplicate likes
 }
