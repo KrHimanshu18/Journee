@@ -2,11 +2,13 @@
   "name": "backend",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify"
+    "deploy": "wrangler deploy --minify",
+    "build": "prisma generate --no-engine && tsc"
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",
     "@prisma/extension-accelerate": "^1.2.2",
+    "bcryptjs": "^3.0.2",
     "hono": "^4.7.2"
   },
   "devDependencies": {
