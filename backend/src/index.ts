@@ -12,11 +12,16 @@ const app = new Hono<{
 
 app.use("*", cors());
 
+app.get("/", (c) => {
+  return c.text("Hello Hono!");
+});
+
 app.get("/test-prisma", async (c) => {
   try {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
+
     try {
       const user = await prisma.user.findFirst();
       return c.json({ message: "Prisma works", user });
@@ -36,63 +41,73 @@ app.get("/test-prisma", async (c) => {
   }
 });
 
-app.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
-
 // // User Login
 // app.get("/login", async (c) => {
-//   const { username, password } = c.req.query();
-
-//   // Check if the input fields are missing
-//   if (!username?.trim() || !password?.trim()) {
-//     return c.json({ message: "Required field is missing" }, 400);
-//   }
-
 //   try {
-//     const user = await prisma.user.findFirst({
-//       where: { username },
-//       select: {
-//         id: true,
-//         username: true,
-//         email: true,
-//         password: true,
-//         bio: true,
-//         followers: true,
-//         following: true,
-//         posts: true,
-//       },
-//     });
+//     const prisma = new PrismaClient({
+//       datasourceUrl: c.env.DATABASE_URL,
+//     }).$extends(withAccelerate());
 
-//     if (!user) {
-//       return c.json({ message: "User not found" }, 404);
+//     const { username, password } = c.req.query();
+
+//     // Check if the input fields are missing
+//     if (!username?.trim() || !password?.trim()) {
+//       return c.json({ message: "Required field is missing" }, 400);
 //     }
 
-//     const isPasswordCorrect = await bcrypt.compare(password, user.password);
+//     try {
+//       const user = await prisma.user.findFirst({
+//         where: { username },
+//         select: {
+//           id: true,
+//           username: true,
+//           email: true,
+//           password: true,
+//           bio: true,
+//           followers: true,
+//           following: true,
+//           posts: true,
+//         },
+//       });
 
-//     if (!isPasswordCorrect) {
-//       return c.json({ message: "Authentication failed" }, 401);
+//       if (!user) {
+//         return c.json({ message: "User not found" }, 404);
+//       }
+
+//       const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+//       if (!isPasswordCorrect) {
+//         return c.json({ message: "Authentication failed" }, 401);
+//       }
+
+//       const { password: _, ...userWithoutPassword } = user;
+
+//       console.log(userWithoutPassword);
+//       return c.json(
+//         {
+//           message: "Logged in Successfully",
+//           user: userWithoutPassword,
+//         },
+//         200
+//       );
+//     } catch (error: unknown) {
+//       console.error(error);
+//       const errorMessage =
+//         error instanceof Error ? error.message : "Unknown error occurred";
+//       return c.json(
+//         {
+//           message: "Login failed",
+//           error: errorMessage,
+//         },
+//         500
+//       );
 //     }
+//   } catch {
+//     console.error("Connection to Prisma Client failed", Error);
 
-//     const { password: _, ...userWithoutPassword } = user;
-
-//     console.log(userWithoutPassword);
+//     // returned message
 //     return c.json(
-//       {
-//         message: "Logged in Successfully",
-//         user: userWithoutPassword,
-//       },
-//       200
-//     );
-//   } catch (error: unknown) {
-//     console.error(error);
-//     const errorMessage =
-//       error instanceof Error ? error.message : "Unknown error occurred";
-//     return c.json(
-//       {
-//         message: "Login failed",
-//         error: errorMessage,
-//       },
+//       { message: "Internal server error. Please try again later." },
 //       500
 //     );
 //   }
@@ -100,66 +115,84 @@ app.get("/", (c) => {
 
 // // User Sign up
 // app.post("/signup", async (c) => {
-//   const body = await c.req.json();
-
-//   // Input validation based on schema
-//   if (!body.username?.trim() || !body.email?.trim() || !body.password?.trim()) {
-//     return c.json({ message: "Required field is missing" }, 400);
-//   }
-
-//   if (
-//     body.username.length > 50 ||
-//     body.password.length < 8 ||
-//     !body.email.includes("@")
-//   ) {
-//     return c.json({ message: "Invalid input format" }, 400);
-//   }
-
 //   try {
-//     const userExists = await prisma.user.findUnique({
-//       where: { username: body.username },
-//     });
-//     if (userExists) {
-//       return c.json({ message: "Username already taken" }, 409);
+//     const prisma = new PrismaClient({
+//       datasourceUrl: c.env.DATABASE_URL,
+//     }).$extends(withAccelerate());
+
+//     const body = await c.req.json();
+
+//     // Input validation based on schema
+//     if (
+//       !body.username?.trim() ||
+//       !body.email?.trim() ||
+//       !body.password?.trim()
+//     ) {
+//       return c.json({ message: "Required field is missing" }, 400);
 //     }
 
-//     const emailExists = await prisma.user.findUnique({
-//       where: { email: body.email },
-//     });
-//     if (emailExists) {
-//       return c.json({ message: "Email already taken" }, 409);
+//     if (
+//       body.username.length > 50 ||
+//       body.password.length < 4 ||
+//       !body.email.includes("@")
+//     ) {
+//       return c.json({ message: "Invalid input format" }, 400);
 //     }
 
-//     const hashedPassword = await bcrypt.hash(body.password, 10);
-//     const user = await prisma.user.create({
-//       data: {
-//         username: body.username,
-//         email: body.email,
-//         password: hashedPassword,
-//         bio: body.bio || null,
-//       },
-//     });
+//     try {
+//       const userExists = await prisma.user.findUnique({
+//         where: { username: body.username },
+//       });
+//       if (userExists) {
+//         return c.json({ message: "Username already taken" }, 409);
+//       }
 
-//     // Remove sensitive data from response
-//     const { password: _, ...userWithoutPassword } = user;
+//       const emailExists = await prisma.user.findUnique({
+//         where: { email: body.email },
+//       });
+//       if (emailExists) {
+//         return c.json({ message: "Email already taken" }, 409);
+//       }
 
-//     console.log("New User : ", userWithoutPassword);
+//       const hashedPassword = await bcrypt.hash(body.password, 10);
+//       const user = await prisma.user.create({
+//         data: {
+//           username: body.username,
+//           email: body.email,
+//           password: hashedPassword,
+//           bio: body.bio || null,
+//         },
+//       });
+
+//       // Remove sensitive data from response
+//       const { password: _, ...userWithoutPassword } = user;
+
+//       console.log("New User : ", userWithoutPassword);
+//       return c.json(
+//         {
+//           message: "User created successfully",
+//           user: userWithoutPassword,
+//         },
+//         201
+//       );
+//     } catch (error: unknown) {
+//       console.error(error);
+//       const errorMessage =
+//         error instanceof Error ? error.message : "Unknown error occurred";
+//       return c.json(
+//         {
+//           message: "Failed to create the user",
+//           error: errorMessage,
+//         },
+//         500
+//       );
+//     }
+//   } catch {
+//     console.error("Connection to Prisma Client failed", Error);
+
+//     // returned message
 //     return c.json(
-//       {
-//         message: "User created successfully",
-//         user: userWithoutPassword,
-//       },
-//       201
-//     );
-//   } catch (error: unknown) {
-//     console.error(error);
-//     const errorMessage =
-//       error instanceof Error ? error.message : "Unknown error occurred";
-//     return c.json(
-//       {
-//         message: "Failed to create the user",
-//         error: errorMessage,
-//       },
+//       { message: "Internal server error. Please try again later." },
 //       500
 //     );
 //   }
