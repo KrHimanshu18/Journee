@@ -12,35 +12,7 @@ const app = new Hono<{
 
 app.use("*", cors());
 
-app.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
-
-app.get("/test-prisma", async (c) => {
-  try {
-    const prisma = new PrismaClient({
-      datasourceUrl: c.env.DATABASE_URL,
-    }).$extends(withAccelerate());
-
-    try {
-      const user = await prisma.user.findFirst();
-      return c.json({ message: "Prisma works", user });
-    } catch (error: unknown) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Unknown error occurred";
-      return c.json({ error: errorMessage }, 500);
-    }
-  } catch {
-    console.error("Connection to Prisma Client failed", Error);
-
-    // returned message
-    return c.json(
-      { message: "Internal server error. Please try again later." },
-      500
-    );
-  }
-});
-
+// WORKING : VERIFIED ON POSTMAN
 // User Login
 app.get("/login", async (c) => {
   try {
@@ -113,6 +85,12 @@ app.get("/login", async (c) => {
   }
 });
 
+// WORKING : VERIFIED ON POSTMAN
+// {
+//   "username":"Kr_Himanshu",
+//   "email":"krhimanshu@gmail.com",
+//   "password":"020812"
+// }
 // User Sign up
 app.post("/signup", async (c) => {
   try {
@@ -198,6 +176,11 @@ app.post("/signup", async (c) => {
   }
 });
 
+//  WORKING : VERIFIED ON POSTMAN
+// {
+//   "username":"Kr_Himanshu",
+//   "content":"This is the demo post"
+// }
 // New Post
 app.post("/newPost", async (c) => {
   try {
@@ -259,6 +242,7 @@ app.post("/newPost", async (c) => {
   } catch {}
 });
 
+// WORKING : VERIFIED ON POSTMAN
 // Delete Post
 app.delete("/deletePost/:postId", async (c) => {
   try {
@@ -328,6 +312,7 @@ app.delete("/deletePost/:postId", async (c) => {
   } catch {}
 });
 
+// WORKING : VERIFIED ON POSTMAN
 // Get Feed
 app.get("/getFeed", async (c) => {
   try {
@@ -429,6 +414,7 @@ app.get("/getFeed", async (c) => {
   } catch {}
 });
 
+// WORKING : VERIFIED ON POSTMAN
 // Update like
 app.post("/toggleLike", async (c) => {
   try {
@@ -521,6 +507,12 @@ app.post("/toggleLike", async (c) => {
   } catch {}
 });
 
+// WORKING : VERIFIED ON POSTMAN
+// {
+//   "username":"Kr_Himanshu",
+//   "postId":"4907f91c-1197-4e2d-ad92-1a9bfe58ec24",
+//   "comment":"This is the demo comment"
+// }
 // Create comment
 app.post("/createComment", async (c) => {
   try {
@@ -606,6 +598,11 @@ app.post("/createComment", async (c) => {
   } catch {}
 });
 
+//  WORKING : VERIFIED ON POSTMAN
+// {
+//   "username":"Kr_Himanshu",
+//   "targetUsername":"Kr_Ankit"
+// }
 // Follow user
 app.post("/toggleFollow", async (c) => {
   try {
