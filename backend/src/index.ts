@@ -1,12 +1,13 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 
 const app = new Hono();
+
+app.use("*", cors());
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
-
-export default app;
 
 // User Login
 // User Sign up
@@ -17,3 +18,5 @@ export default app;
 // Create comment
 // Follow user
 // Tag user
+
+export default app;
