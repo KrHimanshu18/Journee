@@ -36,9 +36,9 @@ app.get("/test-prisma", async (c) => {
   }
 });
 
-// app.get("/", (c) => {
-//   return c.text("Hello Hono!");
-// });
+app.get("/", (c) => {
+  return c.text("Hello Hono!");
+});
 
 // // User Login
 // app.get("/login", async (c) => {
