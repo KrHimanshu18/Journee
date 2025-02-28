@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 function Explore() {
   const navigate = useNavigate();
   const { username, post, isOpen, setIsOpen } = useContext(LoginContext);
+  const url = "http://127.0.0.1:8787";
 
   return (
     <div

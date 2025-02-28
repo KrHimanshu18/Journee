@@ -17,6 +17,7 @@ function Profile() {
     setIsOpen,
   } = useContext(LoginContext);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const url = "http://127.0.0.1:8787";
 
   const settingsOptions = [
     "Edit Profile",

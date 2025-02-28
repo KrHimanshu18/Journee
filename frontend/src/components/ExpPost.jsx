@@ -1,6 +1,8 @@
 import React from "react";
 
 function ExpPost(props) {
+  const url = "http://127.0.0.1:8787";
+
   return (
     <div className="h-[100vh] sm:h-[90vh] md:h-[80vh] lg:h-[90vh] mt-10 sm:mt-16 md:mt-20 w-full">
       <div className="flex flex-col justify-between text-center border-2 border-white rounded-2xl m-2 sm:m-3 md:m-4 bg-gray-900 shadow-lg h-[85%] sm:h-[80%] md:h-[75%] lg:h-[80%] w-full box-border">
