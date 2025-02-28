@@ -21,6 +21,7 @@ function Profile() {
   } = useContext(LoginContext);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [newPostContent, setNewPostContent] = useState("");
   const url = "http://127.0.0.1:8787";
 
   const settingsOptions = [
@@ -33,6 +34,33 @@ function Profile() {
     "About",
     "Log out",
   ];
+
+  const newPost = async () => {
+    try {
+      if (!newPostContent.trim()) {
+        alert("Post content cannot be empty");
+        return;
+      }
+
+      const response = await axios.post(`${url}/newPost`, {
+        username,
+        content: newPostContent,
+      });
+
+      const { post: createdPost } = response.data;
+      setPost([createdPost, ...post]); // Add new post to the top of the list
+      setPostCount(postCount + 1); // Increment post count
+      setNewPostContent(""); // Clear textarea
+      console.log("Post created successfully:", response.data.message);
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to create post";
+      console.error("Error creating post:", errorMessage);
+      alert(errorMessage);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -266,10 +294,15 @@ function Profile() {
               name=""
               id=""
               rows={10}
+              value={newPostContent}
+              onChange={(e) => setNewPostContent(e.target.value)}
               className="w-[99%] bg-[#12202e] font-medium px-3 sm:px-4 py-2 text-[#d9d9d9] text-base sm:text-lg md:text-xl"
               style={{ fontFamily: "PT Serif, serif" }}
             ></textarea>
-            <button className="bg-amber-300 cursor-pointer font-['Montserrat'] font-bold text-black text-lg sm:text-xl md:text-2xl px-4 sm:px-6 py-1 sm:py-2 w-full rounded-b-xl hover:bg-amber-400 transition duration-300">
+            <button
+              className="bg-amber-300 cursor-pointer font-['Montserrat'] font-bold text-black text-lg sm:text-xl md:text-2xl px-4 sm:px-6 py-1 sm:py-2 w-full rounded-b-xl hover:bg-amber-400 transition duration-300"
+              onClick={newPost}
+            >
               Post
             </button>
           </div>

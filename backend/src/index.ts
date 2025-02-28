@@ -12,6 +12,7 @@ const app = new Hono<{
 
 app.use("*", cors());
 
+// INTEGRATED
 // WORKING : VERIFIED ON POSTMAN
 // User Login
 app.get("/login", async (c) => {
@@ -85,6 +86,7 @@ app.get("/login", async (c) => {
   }
 });
 
+// INTEGRATED
 // WORKING : VERIFIED ON POSTMAN
 // {
 //   "username":"Kr_Himanshu",
@@ -176,6 +178,7 @@ app.post("/signup", async (c) => {
   }
 });
 
+// INTEGRATED
 //  WORKING : VERIFIED ON POSTMAN
 // {
 //   "username":"Kr_Himanshu",
