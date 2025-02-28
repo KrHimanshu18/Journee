@@ -1,16 +1,88 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext } from "react";
+import { LoginContext } from "../context/LoginContext";
 
 function ExpPost(props) {
+  const { username } = useContext(LoginContext);
   const url = "http://127.0.0.1:8787";
+
+  // when follow button is clicked
+  const followUser = async () => {
+    try {
+      const response = await axios.post(
+        `${url}/toggleFollow`,
+        {
+          username: username,
+          targetUsername: props.post.authorId,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Handle successful follow/unfollow
+      console.log(response.data.message);
+      // You might want to update local state here to reflect follow status
+      // For example:
+      // setIsFollowing(response.data.following);
+    } catch (error) {
+      // Axios error handling
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to toggle follow";
+      console.error("Error toggling follow:", errorMessage);
+      // You might want to show an error message to the user
+      alert(errorMessage);
+    }
+  };
+
+  // when like button is clicked
+  const toggleLike = async () => {
+    try {
+      const response = await axios.post(
+        `${url}/toggleLike`,
+        {
+          username: username,
+          postId: props.post.id, // Assuming postId is passed as a prop
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Handle successful like/unlike
+      console.log(response.data.message);
+      // You might want to update local state here to reflect like status
+      // For example:
+      // setIsLiked(response.data.liked);
+    } catch (error) {
+      // Axios error handling
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to toggle like";
+      console.error("Error toggling like:", errorMessage);
+      // You might want to show an error message to the user
+      alert(errorMessage);
+    }
+  };
 
   return (
     <div className="h-[100vh] sm:h-[90vh] md:h-[80vh] lg:h-[90vh] mt-10 sm:mt-16 md:mt-20 w-full">
       <div className="flex flex-col justify-between text-center border-2 border-white rounded-2xl m-2 sm:m-3 md:m-4 bg-gray-900 shadow-lg h-[85%] sm:h-[80%] md:h-[75%] lg:h-[80%] w-full box-border">
         <div className="flex justify-between items-center mb-2 sm:mb-3 bg-white rounded-t-2xl px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2">
           <p className="text-lg sm:text-xl md:text-2xl text-black font-['Montserrat'] font-bold overflow-hidden text-ellipsis whitespace-nowrap">
-            @{props.username}
+            @{props.post.authorId}
           </p>
-          <button className="cursor-pointer bg-[#12202e] font-['Montserrat'] font-bold text-[#d9d9d9] text-base sm:text-lg md:text-xl px-2 py-1 sm:px-3 sm:py-1 rounded-lg hover:bg-amber-400 hover:text-[#12202e] transition duration-300">
+          <button
+            className="cursor-pointer bg-[#12202e] font-['Montserrat'] font-bold text-[#d9d9d9] text-base sm:text-lg md:text-xl px-2 py-1 sm:px-3 sm:py-1 rounded-lg hover:bg-amber-400 hover:text-[#12202e] transition duration-300"
+            onClick={followUser}
+          >
             Follow
           </button>
         </div>
@@ -20,13 +92,13 @@ function ExpPost(props) {
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#d9d9d9] leading-relaxed font-bold overflow-wrap break-word"
             style={{ fontFamily: "PT Serif, serif" }}
           >
-            {props.content}
+            {props.post.content}
           </p>
         </div>
 
         <div className="flex justify-between items-center mt-2 sm:mt-3 md:mt-4 bg-white rounded-b-2xl px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2">
           <a
-            href="#"
+            onClick={toggleLike}
             className="flex items-center gap-1 sm:gap-2 hover:scale-105 transition duration-300"
           >
             <svg

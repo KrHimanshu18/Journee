@@ -16,8 +16,13 @@ function Explore() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const postRes = await Promise.all([axios.get(`${url}/getFeed`)]);
+        const postRes = await axios.get(`${url}/getFeed`, {
+          params: {
+            username: username,
+          },
+        });
         setPost(postRes.data.posts);
+        console.log(postRes.data.posts);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -106,11 +111,9 @@ function Explore() {
         </div>
       </header>
 
-      <section className="px-2 sm:px-4 md:px-8 lg:px-16 xl:px-20 pt-[60px] sm:pt-[80px] md:pt-[100px] lg:pt-[120px]">
+      <section className="px-2 sm:px-4 md:px-8 lg:px-16 xl:px-20 pt-[60px] sm:pt-[80px] md:pt-[80px] lg:pt-[80px]">
         {!loading && post.length > 0 ? (
-          post.map((item, index) => (
-            <ExpPost key={index} username={username} content={item.content} />
-          ))
+          post.map((item, index) => <ExpPost key={index} post={item} />)
         ) : (
           <p className="text-center font-bold h-screen">No posts available</p>
         )}
