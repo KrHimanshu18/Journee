@@ -1,8 +1,9 @@
-import { React, useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import Post from "./Post";
 import { Menu, X } from "lucide-react";
+import axios from "axios";
 
 function Profile() {
   const navigate = useNavigate();
@@ -10,13 +11,16 @@ function Profile() {
     username,
     setUsername,
     postCount,
+    setPostCount,
     follower,
     following,
     post,
+    setPost,
     isOpen,
     setIsOpen,
   } = useContext(LoginContext);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const url = "http://127.0.0.1:8787";
 
   const settingsOptions = [
@@ -29,6 +33,27 @@ function Profile() {
     "About",
     "Log out",
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const postRes = await axios.get(`${url}/getPost`, {
+          params: {
+            username: username,
+          },
+        });
+        setPost(postRes.data.posts);
+        setPostCount(postRes.data.posts.length);
+        console.log(postRes.data.posts);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [username]);
 
   return (
     <div
@@ -251,9 +276,8 @@ function Profile() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-12 my-4 pb-10">
-          {post.map((item, index) => (
-            <Post key={index} username={username} content={item.content} />
-          ))}
+          {!loading &&
+            post.map((item, index) => <Post key={index} post={item} />)}
         </div>
       </section>
     </div>

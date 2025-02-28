@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 
 function Post(props) {
   const url = "http://127.0.0.1:8787";
@@ -13,7 +13,7 @@ function Post(props) {
     <div className="flex flex-col border border-gray-300 rounded-xl shadow-md w-full max-w-3xl mx-auto">
       <div className="bg-white rounded-t-md flex justify-between items-center">
         <h2 className="text-left font-semibold font-['Montserrat'] text-black text-lg sm:text-xl px-4 py-2 sm:px-6">
-          @{props.username}
+          @{props.post.authorId}
         </h2>
         <div className="relative">
           <button
@@ -41,7 +41,7 @@ function Post(props) {
         className="flex flex-col justify-center text-amber-300 font-semibold px-4 sm:px-6 mt-2 mb-2 leading-relaxed text-center min-h-[15rem] sm:min-h-[20rem] text-sm sm:text-base md:text-base overflow-wrap break-words"
         style={{ fontFamily: "PT Serif, serif" }}
       >
-        "{props.content}"
+        "{props.post.content}"
       </p>
     </div>
   );

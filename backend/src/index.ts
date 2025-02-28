@@ -415,6 +415,89 @@ app.get("/getFeed", async (c) => {
 });
 
 // WORKING : VERIFIED ON POSTMAN
+// Get Post
+app.get("/getPost", async (c) => {
+  try {
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const { username } = c.req.query(); // Get username from query parameters
+
+    // Input validation
+    if (!username?.trim()) {
+      return c.json({ message: "Username is required" }, 400);
+    }
+
+    try {
+      // Check if the user exists
+      const user = await prisma.user.findUnique({
+        where: { username },
+      });
+
+      if (!user) {
+        return c.json({ message: "User not found" }, 404);
+      }
+
+      // Fetch all posts by the given username
+      const posts = await prisma.post.findMany({
+        where: {
+          authorId: username, // Filter posts where authorId matches the given username
+        },
+        orderBy: {
+          createdAt: "desc", // Sort by most recent first
+        },
+        select: {
+          id: true,
+          content: true,
+          createdAt: true,
+          authorId: true,
+          author: {
+            select: {
+              username: true,
+              bio: true, // Optional: include author details
+            },
+          },
+          likes: {
+            select: {
+              userId: true, // Optional: include who liked the post
+            },
+          },
+          comments: {
+            select: {
+              id: true,
+              comment: true,
+              createdAt: true,
+              userId: true,
+            },
+          },
+        },
+      });
+
+      console.log(`Fetched posts for ${username}: ${posts.length} posts`);
+      return c.json(
+        {
+          message: "Posts fetched successfully",
+          posts,
+        },
+        200
+      );
+    } catch (error: unknown) {
+      console.error(error);
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occurred";
+      return c.json(
+        {
+          message: "Failed to fetch posts",
+          error: errorMessage,
+        },
+        500
+      );
+    }
+  } catch {}
+});
+
+// WORKING : VERIFIED ON POSTMAN
 // Update like
 app.post("/toggleLike", async (c) => {
   try {
