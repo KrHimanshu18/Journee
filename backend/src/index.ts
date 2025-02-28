@@ -242,6 +242,7 @@ app.post("/newPost", async (c) => {
   } catch {}
 });
 
+// INTEGRATED
 // WORKING : VERIFIED ON POSTMAN
 // Delete Post
 app.delete("/deletePost/:postId", async (c) => {
@@ -312,6 +313,7 @@ app.delete("/deletePost/:postId", async (c) => {
   } catch {}
 });
 
+// INTEGRATED
 // WORKING : VERIFIED ON POSTMAN
 // Get Feed
 app.get("/getFeed", async (c) => {
@@ -414,6 +416,7 @@ app.get("/getFeed", async (c) => {
   } catch {}
 });
 
+// INTEGRATED
 // WORKING : VERIFIED ON POSTMAN
 // Get Post
 app.get("/getPost", async (c) => {
@@ -497,6 +500,7 @@ app.get("/getPost", async (c) => {
   } catch {}
 });
 
+// INTEGRATED
 // WORKING : VERIFIED ON POSTMAN
 // Update like
 app.post("/toggleLike", async (c) => {
@@ -681,6 +685,7 @@ app.post("/createComment", async (c) => {
   } catch {}
 });
 
+// INTEGRATED
 //  WORKING : VERIFIED ON POSTMAN
 // {
 //   "username":"Kr_Himanshu",

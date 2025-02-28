@@ -1,19 +1,77 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
+import axios from "axios";
 
 function Login() {
   const {
+    username,
     setUsername,
     password,
     setPassword,
+    setFollower,
+    setFollowing,
     isSignUp,
     setIsSignUp,
     email,
     setEmail,
+    setPost,
   } = useContext(LoginContext);
   const navigate = useNavigate();
   const url = "http://127.0.0.1:8787";
+
+  const handleLogin = async () => {
+    try {
+      // Make GET request to /login endpoint with username and password as query params
+      const response = await axios.get(`${url}/login`, {
+        params: {
+          username,
+          password,
+        },
+      });
+
+      // Handle successful login
+      const { user } = response.data;
+      setUsername(user.username); // Set username
+      setFollower(user.followers.length); // Set follower count
+      setFollowing(user.following.length); // Set following count
+      setPost(user.posts); // Set user's posts
+      console.log("Login successful:", response.data.message);
+
+      // Navigate to profile page
+      navigate("/profile", { replace: true });
+    } catch (error) {
+      // Handle errors
+      const errorMessage =
+        error.response?.data?.message || error.message || "Login failed";
+      console.error("Error during login:", errorMessage);
+      alert(errorMessage); // Show error to user
+    }
+  };
+
+  const handleSignUp = async () => {
+    try {
+      const response = await axios.post(`${url}/signup`, {
+        username,
+        email,
+        password,
+      });
+
+      const { user } = response.data;
+      setUsername(user.username); // Set username from response
+      setFollower(0); // New user starts with 0 followers
+      setFollowing(0); // New user starts with 0 following
+      setPost([]); // New user starts with no posts
+      console.log("Sign-up successful:", response.data.message);
+
+      navigate("/profile", { replace: true });
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || error.message || "Sign-up failed";
+      console.error("Error during sign-up:", errorMessage);
+      alert(errorMessage);
+    }
+  };
 
   return (
     <div
@@ -64,9 +122,7 @@ function Login() {
 
           <button
             className="w-full bg-yellow-400 text-black text-base xs:text-lg sm:text-xl md:text-2xl font-['Montserrat'] font-semibold py-2 xs:py-3 sm:py-3 rounded-full shadow-md hover:bg-yellow-500 transition-all duration-300 hover:scale-105"
-            onClick={() => {
-              navigate("/profile", { replace: true });
-            }}
+            onClick={isSignUp ? handleSignUp : handleLogin}
           >
             {isSignUp ? "SIGN UP" : "LOGIN"}
           </button>
