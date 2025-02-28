@@ -1,13 +1,31 @@
-import { React, useContext } from "react";
+import { React, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import ExpPost from "./ExpPost";
 import { Menu, X } from "lucide-react";
+import axios from "axios";
 
 function Explore() {
   const navigate = useNavigate();
-  const { username, post, isOpen, setIsOpen } = useContext(LoginContext);
+  const { username, post, setPost, isOpen, setIsOpen } =
+    useContext(LoginContext);
+  const [loading, setLoading] = useState(true);
   const url = "http://127.0.0.1:8787";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const postRes = await Promise.all([axios.get(`${url}/getFeed`)]);
+        setPost(postRes.data.posts);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [username]);
 
   return (
     <div
@@ -89,9 +107,13 @@ function Explore() {
       </header>
 
       <section className="px-2 sm:px-4 md:px-8 lg:px-16 xl:px-20 pt-[60px] sm:pt-[80px] md:pt-[100px] lg:pt-[120px]">
-        {post.map((item, index) => (
-          <ExpPost key={index} username={username} content={item.content} />
-        ))}
+        {!loading && post.length > 0 ? (
+          post.map((item, index) => (
+            <ExpPost key={index} username={username} content={item.content} />
+          ))
+        ) : (
+          <p className="text-center font-bold h-screen">No posts available</p>
+        )}
       </section>
     </div>
   );
