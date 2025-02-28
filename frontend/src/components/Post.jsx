@@ -1,12 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Menu } from "lucide-react";
+import { LoginContext } from "../context/LoginContext";
+import axios from "axios";
 
 function Post(props) {
   const url = "http://127.0.0.1:8787";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { username } = useContext(LoginContext);
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const deletePost = async () => {
+    try {
+      if (!username) {
+        throw new Error("You must be logged in to delete a post");
+      }
+
+      const response = await axios.delete(
+        `${url}/deletePost/${props.post.id}`,
+        {
+          data: {
+            username: props.post.authorId, // Send username in request body
+          },
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(response.data.message); // "Post deleted successfully"
+      // Optionally, notify parent component or update UI
+      // For example, you could pass a callback via props to remove the post from the list
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to delete post";
+      console.error("Error deleting post:", errorMessage);
+      alert(errorMessage); // Show error to user
+    }
   };
 
   return (
@@ -28,6 +62,7 @@ function Post(props) {
               <button
                 onClick={() => {
                   setIsMenuOpen(false);
+                  deletePost();
                 }}
                 className="cursor-pointer w-full text-left px-3 py-2 sm:px-4 sm:py-2 text-sm text-red-600 hover:bg-gray-100"
               >
