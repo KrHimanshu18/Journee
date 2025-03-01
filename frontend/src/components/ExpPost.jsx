@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react"; // Added useState import
 import { LoginContext } from "../context/LoginContext";
 
 function ExpPost(props) {
-  const { username } = useContext(LoginContext);
+  const { username, following } = useContext(LoginContext);
   const url = "http://127.0.0.1:8787";
   const [isCommentDialogOpen, setIsCommentDialogOpen] = useState(false);
   const [comments, setComments] = useState(props.post.comments || []);
@@ -211,13 +211,13 @@ function ExpPost(props) {
                     className="mb-3 p-3 bg-gray-700 rounded-lg"
                   >
                     <p className="text-sm text-amber-400 font-['Montserrat'] font-bold">
-                      @{comment.username}
+                      @{comment.userId}
                     </p>
                     <p
                       className="text-white text-base"
                       style={{ fontFamily: "PT Serif, serif" }}
                     >
-                      {comment.content}
+                      {comment.comment}
                     </p>
                   </div>
                 ))
