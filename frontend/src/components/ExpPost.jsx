@@ -8,9 +8,12 @@ function ExpPost(props) {
   const [isCommentDialogOpen, setIsCommentDialogOpen] = useState(false);
   const [comments, setComments] = useState(props.post.comments || []);
   const [newComment, setNewComment] = useState("");
+  const isFollowing = following.some(
+    (f) => f.followingId === props.post.authorId
+  );
 
   // when follow button is clicked
-  const followUser = async () => {
+  const toggleFollow = async () => {
     try {
       const response = await axios.post(
         `${url}/toggleFollow`,
@@ -114,12 +117,14 @@ function ExpPost(props) {
           <p className="text-lg sm:text-xl md:text-2xl text-black font-['Montserrat'] font-bold overflow-hidden text-ellipsis whitespace-nowrap">
             @{props.post.authorId}
           </p>
-          <button
-            className="cursor-pointer bg-[#12202e] font-['Montserrat'] font-bold text-[#d9d9d9] text-base sm:text-lg md:text-xl px-2 py-1 sm:px-3 sm:py-1 rounded-lg hover:bg-amber-400 hover:text-[#12202e] transition duration-300"
-            onClick={followUser}
-          >
-            Follow
-          </button>
+          {username !== props.post.authorId && (
+            <button
+              className="cursor-pointer bg-[#12202e] font-['Montserrat'] font-bold text-[#d9d9d9] text-base sm:text-lg md:text-xl px-2 py-1 sm:px-3 sm:py-1 rounded-lg hover:bg-amber-400 hover:text-[#12202e] transition duration-300"
+              onClick={toggleFollow}
+            >
+              {isFollowing ? "Unfollow" : "Follow"}
+            </button>
+          )}
         </div>
 
         <div className="flex justify-center items-center flex-grow px-2 sm:px-3 md:px-4">

@@ -318,7 +318,7 @@ app.delete("/deletePost/:postId", async (c) => {
 
 // INTEGRATED
 // WORKING : VERIFIED ON POSTMAN
-// Get Feed
+// Explore page
 app.get("/getFeed", async (c) => {
   try {
     const prisma = new PrismaClient({
@@ -350,21 +350,10 @@ app.get("/getFeed", async (c) => {
 
       const followedUsernames = following.map((f) => f.followingId);
 
-      // If the user isn't following anyone, return an empty feed
-      if (followedUsernames.length === 0) {
-        return c.json(
-          {
-            message: "Feed fetched successfully",
-            posts: [],
-          },
-          200
-        );
-      }
-
-      // Fetch all posts by the followed users
-      const posts = await prisma.post.findMany({
+      // Fetch posts from followed users
+      const followedPosts = await prisma.post.findMany({
         where: {
-          authorId: { in: followedUsernames }, // Posts where authorId is in the list of followed usernames
+          authorId: { in: followedUsernames }, // Posts from followed users
         },
         orderBy: {
           createdAt: "desc", // Sort by most recent first
@@ -377,12 +366,12 @@ app.get("/getFeed", async (c) => {
           author: {
             select: {
               username: true,
-              bio: true, // Optional: include author details
+              bio: true,
             },
           },
           likes: {
             select: {
-              userId: true, // Optional: include who liked the post
+              userId: true,
             },
           },
           comments: {
@@ -396,7 +385,47 @@ app.get("/getFeed", async (c) => {
         },
       });
 
-      console.log(`Fetched feed for ${username}: ${posts.length} posts`);
+      // Fetch other posts (excluding followed users)
+      const otherPosts = await prisma.post.findMany({
+        where: {
+          authorId: { notIn: followedUsernames }, // Exclude followed users
+        },
+        orderBy: {
+          createdAt: "desc", // Sort by most recent first
+        },
+        select: {
+          id: true,
+          content: true,
+          createdAt: true,
+          authorId: true,
+          author: {
+            select: {
+              username: true,
+              bio: true,
+            },
+          },
+          likes: {
+            select: {
+              userId: true,
+            },
+          },
+          comments: {
+            select: {
+              id: true,
+              comment: true,
+              createdAt: true,
+              userId: true,
+            },
+          },
+        },
+      });
+
+      // Combine posts: followed users' posts first, then others
+      const posts = [...followedPosts, ...otherPosts];
+
+      console.log(
+        `Fetched feed for ${username}: ${posts.length} posts (followed: ${followedPosts.length}, others: ${otherPosts.length})`
+      );
       return c.json(
         {
           message: "Feed fetched successfully",
@@ -404,7 +433,7 @@ app.get("/getFeed", async (c) => {
         },
         200
       );
-    } catch (error: unknown) {
+    } catch (error) {
       console.error(error);
       const errorMessage =
         error instanceof Error ? error.message : "Unknown error occurred";
