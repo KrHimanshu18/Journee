@@ -1,10 +1,13 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react"; // Added useState import
 import { LoginContext } from "../context/LoginContext";
 
 function ExpPost(props) {
   const { username } = useContext(LoginContext);
   const url = "http://127.0.0.1:8787";
+  const [isCommentDialogOpen, setIsCommentDialogOpen] = useState(false);
+  const [comments, setComments] = useState(props.post.comments || []);
+  const [newComment, setNewComment] = useState("");
 
   // when follow button is clicked
   const followUser = async () => {
@@ -21,20 +24,13 @@ function ExpPost(props) {
           },
         }
       );
-
-      // Handle successful follow/unfollow
       console.log(response.data.message);
-      // You might want to update local state here to reflect follow status
-      // For example:
-      // setIsFollowing(response.data.following);
     } catch (error) {
-      // Axios error handling
       const errorMessage =
         error.response?.data?.message ||
         error.message ||
         "Failed to toggle follow";
       console.error("Error toggling follow:", errorMessage);
-      // You might want to show an error message to the user
       alert(errorMessage);
     }
   };
@@ -46,7 +42,40 @@ function ExpPost(props) {
         `${url}/toggleLike`,
         {
           username: username,
-          postId: props.post.id, // Assuming postId is passed as a prop
+          postId: props.post.id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response.data.message);
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to toggle like";
+      console.error("Error toggling like:", errorMessage);
+      alert(errorMessage);
+    }
+  };
+
+  // when comment is submitted
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    if (!newComment.trim()) {
+      alert("Comment cannot be empty");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${url}/createComment`,
+        {
+          username: username,
+          postId: props.post.id,
+          comment: newComment,
         },
         {
           headers: {
@@ -55,25 +84,31 @@ function ExpPost(props) {
         }
       );
 
-      // Handle successful like/unlike
+      // Add the new comment to the local state
+      const createdComment = response.data.comment;
+      setComments([
+        ...comments,
+        {
+          id: createdComment.id,
+          username: createdComment.userId,
+          content: createdComment.comment,
+          createdAt: createdComment.createdAt,
+        },
+      ]);
+      setNewComment(""); // Clear the input
       console.log(response.data.message);
-      // You might want to update local state here to reflect like status
-      // For example:
-      // setIsLiked(response.data.liked);
     } catch (error) {
-      // Axios error handling
       const errorMessage =
         error.response?.data?.message ||
         error.message ||
-        "Failed to toggle like";
-      console.error("Error toggling like:", errorMessage);
-      // You might want to show an error message to the user
+        "Failed to create comment";
+      console.error("Error creating comment:", errorMessage);
       alert(errorMessage);
     }
   };
 
   return (
-    <div className="h-[100vh] sm:h-[90vh] md:h-[80vh] lg:h-[90vh] mt-10 sm:mt-16 md:mt-20 w-full">
+    <div className="h-[100vh] sm:h-[90vh] md:h-[80vh] lg:h-[80vh] mt-10 sm:mt-16 md:mt-20 w-full">
       <div className="flex flex-col justify-between text-center border-2 border-white rounded-2xl m-2 sm:m-3 md:m-4 bg-gray-900 shadow-lg h-[85%] sm:h-[80%] md:h-[75%] lg:h-[80%] w-full box-border">
         <div className="flex justify-between items-center mb-2 sm:mb-3 bg-white rounded-t-2xl px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2">
           <p className="text-lg sm:text-xl md:text-2xl text-black font-['Montserrat'] font-bold overflow-hidden text-ellipsis whitespace-nowrap">
@@ -111,12 +146,12 @@ function ExpPost(props) {
               <path d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"></path>
             </svg>
             <p className="text-base sm:text-lg md:text-xl font-bold text-black font-['Montserrat']">
-              Like
+              {props.post.likes.length}
             </p>
           </a>
 
           <a
-            href="#"
+            onClick={() => setIsCommentDialogOpen(true)}
             className="flex items-center gap-1 sm:gap-2 hover:scale-105 transition duration-300"
           >
             <svg
@@ -152,6 +187,64 @@ function ExpPost(props) {
           </a>
         </div>
       </div>
+      {isCommentDialogOpen && (
+        <div className="fixed inset-0 bg-opacity-10 flex items-center justify-center z-10">
+          <div className="bg-gray-800 w-full max-w-md rounded-lg p-6 max-h-[80vh] flex flex-col">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold text-white font-['Montserrat']">
+                Comments
+              </h3>
+              <button
+                onClick={() => setIsCommentDialogOpen(false)}
+                className="text-white hover:text-amber-400"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Comments List */}
+            <div className="flex-grow overflow-y-auto mb-4">
+              {comments.length > 0 ? (
+                comments.map((comment) => (
+                  <div
+                    key={comment.id}
+                    className="mb-3 p-3 bg-gray-700 rounded-lg"
+                  >
+                    <p className="text-sm text-amber-400 font-['Montserrat'] font-bold">
+                      @{comment.username}
+                    </p>
+                    <p
+                      className="text-white text-base"
+                      style={{ fontFamily: "PT Serif, serif" }}
+                    >
+                      {comment.content}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-400">No comments yet</p>
+              )}
+            </div>
+
+            {/* New Comment Input */}
+            <form onSubmit={handleCommentSubmit} className="flex gap-2">
+              <input
+                type="text"
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                placeholder="Add a comment..."
+                className="flex-grow p-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400"
+              />
+              <button
+                type="submit"
+                className="bg-amber-400 text-[#12202e] px-4 py-2 rounded-lg font-['Montserrat'] font-bold hover:bg-amber-500"
+              >
+                Post
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

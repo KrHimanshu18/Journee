@@ -597,6 +597,7 @@ app.post("/toggleLike", async (c) => {
   } catch {}
 });
 
+// INTEGRATED
 // WORKING : VERIFIED ON POSTMAN
 // {
 //   "username":"Kr_Himanshu",
