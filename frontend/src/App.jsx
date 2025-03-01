@@ -9,8 +9,8 @@ import { LoginContext } from "./context/LoginContext";
 function App() {
   const [username, setUsername] = useState("Guest User");
   const [postCount, setPostCount] = useState("0");
-  const [follower, setFollower] = useState("0");
-  const [following, setFollowing] = useState("0");
+  const [follower, setFollower] = useState([]);
+  const [following, setFollowing] = useState([]);
   const quotes = [
     {
       quote: "The only way to do great work is to love what you do.",

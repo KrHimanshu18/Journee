@@ -258,7 +258,7 @@ function Profile() {
                     Followers
                   </p>
                   <p className="text-white font-medium text-lg sm:text-xl md:text-2xl">
-                    {follower}
+                    {follower.length}
                   </p>
                 </a>
                 <a
@@ -269,7 +269,7 @@ function Profile() {
                     Following
                   </p>
                   <p className="text-white font-medium text-lg sm:text-xl md:text-2xl">
-                    {following}
+                    {following.length}
                   </p>
                 </a>
               </div>

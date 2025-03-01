@@ -33,8 +33,8 @@ function Login() {
       // Handle successful login
       const { user } = response.data;
       setUsername(user.username); // Set username
-      setFollower(user.followers.length); // Set follower count
-      setFollowing(user.following.length); // Set following count
+      setFollower(user.followers); // Set follower count
+      setFollowing(user.following); // Set following count
       setPost(user.posts); // Set user's posts
       console.log("Login successful:", response.data.message);
 
