@@ -136,7 +136,7 @@ function ExpPost(props) {
           </p>
         </div>
 
-        <div className="flex justify-between items-center mt-2 sm:mt-3 md:mt-4 bg-white rounded-b-2xl px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2">
+        <div className="cursor-pointer flex justify-between items-center mt-2 sm:mt-3 md:mt-4 bg-white rounded-b-2xl px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2">
           <a
             onClick={toggleLike}
             className="flex items-center gap-1 sm:gap-2 hover:scale-105 transition duration-300"
