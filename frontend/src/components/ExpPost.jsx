@@ -93,8 +93,8 @@ function ExpPost(props) {
         ...comments,
         {
           id: createdComment.id,
-          username: createdComment.userId,
-          content: createdComment.comment,
+          userId: createdComment.userId,
+          comment: createdComment.comment,
           createdAt: createdComment.createdAt,
         },
       ]);
