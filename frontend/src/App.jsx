@@ -8,7 +8,7 @@ import { LoginContext } from "./context/LoginContext";
 
 function App() {
   const [username, setUsername] = useState("Guest User");
-  const [postCount, setPostCount] = useState("0");
+  const [profilePost, setProfilePost] = useState([]);
   const [follower, setFollower] = useState([]);
   const [following, setFollowing] = useState([]);
   const quotes = [
@@ -93,8 +93,6 @@ function App() {
         value={{
           username,
           setUsername,
-          postCount,
-          setPostCount,
           follower,
           setFollower,
           following,
@@ -110,6 +108,8 @@ function App() {
           email,
           setEmail,
           quotes,
+          profilePost,
+          setProfilePost,
         }}
       >
         <Router>

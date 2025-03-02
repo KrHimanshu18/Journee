@@ -24,7 +24,7 @@ function Home() {
     }, 5000);
 
     return () => clearInterval(quoteInterval);
-  }, [length]);
+  }, [length, username]);
 
   return (
     <div

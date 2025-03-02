@@ -1,20 +1,35 @@
 import axios from "axios";
-import React, { useContext, useState } from "react"; // Added useState import
+import React, { useContext, useState, useEffect } from "react";
 import { LoginContext } from "../context/LoginContext";
 
 function ExpPost(props) {
-  const { username, following } = useContext(LoginContext);
+  const { username, following, setFollowing } = useContext(LoginContext);
   const url = "http://127.0.0.1:8787";
   const [isCommentDialogOpen, setIsCommentDialogOpen] = useState(false);
   const [comments, setComments] = useState(props.post.comments || []);
   const [newComment, setNewComment] = useState("");
-  const isFollowing = following.some(
-    (f) => f.followingId === props.post.authorId
+  const [isFollowing, setIsFollowing] = useState(
+    following.some((f) => f.followingId === props.post.authorId)
+  );
+  const [likeCount, setLikeCount] = useState(props.post.likes.length);
+  const [isLiked, setIsLiked] = useState(
+    props.post.likes.some((like) => like.userId === username)
   );
 
-  // when follow button is clicked
+  // Sync local isFollowing with context when following changes externally
+  useEffect(() => {
+    setIsFollowing(
+      following.some((f) => f.followingId === props.post.authorId)
+    );
+  }, [following, props.post.authorId]);
+
+  // When follow button is clicked
   const toggleFollow = async () => {
     try {
+      const wasFollowing = isFollowing;
+      // Optimistically update UI
+      setIsFollowing(!isFollowing);
+
       const response = await axios.post(
         `${url}/toggleFollow`,
         {
@@ -27,8 +42,22 @@ function ExpPost(props) {
           },
         }
       );
+
+      // Update context based on response
+      if (wasFollowing) {
+        setFollowing(
+          following.filter((f) => f.followingId !== props.post.authorId)
+        );
+      } else {
+        setFollowing([
+          ...following,
+          { followingId: props.post.authorId, userId: username },
+        ]);
+      }
       console.log(response.data.message);
     } catch (error) {
+      // Revert on failure
+      setIsFollowing(isFollowing);
       const errorMessage =
         error.response?.data?.message ||
         error.message ||
@@ -38,9 +67,14 @@ function ExpPost(props) {
     }
   };
 
-  // when like button is clicked
+  // When like button is clicked
   const toggleLike = async () => {
     try {
+      const wasLiked = isLiked;
+      // Optimistically update UI
+      setIsLiked(!isLiked);
+      setLikeCount(wasLiked ? likeCount - 1 : likeCount + 1);
+
       const response = await axios.post(
         `${url}/toggleLike`,
         {
@@ -55,6 +89,9 @@ function ExpPost(props) {
       );
       console.log(response.data.message);
     } catch (error) {
+      // Revert on failure
+      setIsLiked(wasLiked);
+      setLikeCount(wasLiked ? likeCount + 1 : likeCount - 1);
       const errorMessage =
         error.response?.data?.message ||
         error.message ||
@@ -64,7 +101,7 @@ function ExpPost(props) {
     }
   };
 
-  // when comment is submitted
+  // When comment is submitted
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!newComment.trim()) {
@@ -119,7 +156,11 @@ function ExpPost(props) {
           </p>
           {username !== props.post.authorId && (
             <button
-              className="cursor-pointer bg-[#12202e] font-['Montserrat'] font-bold text-[#d9d9d9] text-base sm:text-lg md:text-xl px-2 py-1 sm:px-3 sm:py-1 rounded-lg hover:bg-amber-400 hover:text-[#12202e] transition duration-300"
+              className={`cursor-pointer font-['Montserrat'] font-bold text-base sm:text-lg md:text-xl px-2 py-1 sm:px-3 sm:py-1 rounded-lg transition duration-300 ${
+                isFollowing
+                  ? "bg-[#12202e] text-white hover:bg-gray-700"
+                  : "bg-[#12202e] text-[#d9d9d9] hover:bg-amber-400 hover:text-[#12202e]"
+              }`}
               onClick={toggleFollow}
             >
               {isFollowing ? "Unfollow" : "Follow"}
@@ -146,12 +187,14 @@ function ExpPost(props) {
               width="20"
               height="20"
               viewBox="0 0 24 24"
-              className="fill-[#12202e] w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 ${
+                isLiked ? "fill-red-500" : "fill-[#12202e]"
+              }`}
             >
               <path d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"></path>
             </svg>
             <p className="text-base sm:text-lg md:text-xl font-bold text-black font-['Montserrat']">
-              {props.post.likes.length}
+              {likeCount}
             </p>
           </a>
 

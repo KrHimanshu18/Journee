@@ -15,7 +15,7 @@ function Login() {
     setIsSignUp,
     email,
     setEmail,
-    setPost,
+    setProfilePost,
   } = useContext(LoginContext);
   const navigate = useNavigate();
   const url = "http://127.0.0.1:8787";
@@ -35,8 +35,10 @@ function Login() {
       setUsername(user.username); // Set username
       setFollower(user.followers); // Set follower count
       setFollowing(user.following); // Set following count
-      setPost(user.posts); // Set user's posts
+      setProfilePost(user.posts); // Set user's posts
       console.log("Login successful:", response.data.message);
+
+      setPassword("");
 
       // Navigate to profile page
       navigate("/profile", { replace: true });
@@ -59,10 +61,12 @@ function Login() {
 
       const { user } = response.data;
       setUsername(user.username); // Set username from response
-      setFollower(0); // New user starts with 0 followers
-      setFollowing(0); // New user starts with 0 following
-      setPost([]); // New user starts with no posts
+      setFollower([]); // New user starts with 0 followers
+      setFollowing([]); // New user starts with 0 following
+      setProfilePost([]); // New user starts with no posts
       console.log("Sign-up successful:", response.data.message);
+      setPassword("");
+      setEmail("");
 
       navigate("/profile", { replace: true });
     } catch (error) {

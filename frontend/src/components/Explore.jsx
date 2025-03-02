@@ -10,8 +10,10 @@ function Explore() {
   const { username, post, setPost, isOpen, setIsOpen } =
     useContext(LoginContext);
   const [loading, setLoading] = useState(true);
+  const [localPosts, setLocalPosts] = useState(post); // Added local state
   const url = "http://127.0.0.1:8787";
 
+  // Fetch posts when username changes
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,6 +24,7 @@ function Explore() {
           },
         });
         setPost(postRes.data.posts);
+        setLocalPosts(postRes.data.posts);
         console.log(postRes.data.posts);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -29,8 +32,19 @@ function Explore() {
         setLoading(false);
       }
     };
-    fetchData();
-  }, [username]);
+
+    if (username && username !== "Guest User") {
+      fetchData();
+    } else {
+      setLoading(false);
+      setLocalPosts([]);
+    }
+  }, [username, setPost]); // Removed 'post' from dependencies
+
+  // Sync local state with context when post changes
+  useEffect(() => {
+    setLocalPosts(post);
+  }, [post]);
 
   return (
     <div
@@ -112,10 +126,18 @@ function Explore() {
       </header>
 
       <section className="px-2 sm:px-4 md:px-8 lg:px-16 xl:px-20 pt-[60px] sm:pt-[80px] md:pt-[80px] lg:pt-[80px]">
-        {!loading && post.length > 0 ? (
-          post.map((item, index) => <ExpPost key={index} post={item} />)
+        {loading ? (
+          <p className="text-center text-white font-bold h-screen">
+            Loading posts...
+          </p>
+        ) : localPosts.length > 0 ? (
+          localPosts.map((item, index) => (
+            <ExpPost key={item.id || index} post={item} /> // Use item.id if available
+          ))
         ) : (
-          <p className="text-center font-bold h-screen">No posts available</p>
+          <p className="text-center text-white font-bold h-screen">
+            No posts available
+          </p>
         )}
       </section>
     </div>

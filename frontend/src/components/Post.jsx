@@ -31,8 +31,11 @@ function Post(props) {
       );
 
       console.log(response.data.message); // "Post deleted successfully"
-      // Optionally, notify parent component or update UI
-      // For example, you could pass a callback via props to remove the post from the list
+
+      // Notify parent component of deletion
+      if (props.onDelete) {
+        props.onDelete(props.post.id); // Pass the post ID to the parent
+      }
     } catch (error) {
       const errorMessage =
         error.response?.data?.message ||
@@ -40,6 +43,8 @@ function Post(props) {
         "Failed to delete post";
       console.error("Error deleting post:", errorMessage);
       alert(errorMessage); // Show error to user
+    } finally {
+      setIsMenuOpen(false); // Close menu regardless of success or failure
     }
   };
 
@@ -60,10 +65,7 @@ function Post(props) {
           {isMenuOpen && (
             <div className="absolute right-0 mt-2 w-40 sm:w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
               <button
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  deletePost();
-                }}
+                onClick={deletePost} // Call deletePost directly
                 className="cursor-pointer w-full text-left px-3 py-2 sm:px-4 sm:py-2 text-sm text-red-600 hover:bg-gray-100"
               >
                 Delete Post

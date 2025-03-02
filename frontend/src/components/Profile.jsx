@@ -10,15 +10,14 @@ function Profile() {
   const {
     username,
     setUsername,
-    postCount,
-    setPostCount,
     follower,
     following,
-    post,
-    setPost,
+    profilePost,
+    setProfilePost,
     isOpen,
     setIsOpen,
   } = useContext(LoginContext);
+  const [localProfilePost, setLocalProfilePost] = useState(profilePost || []);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [newPostContent, setNewPostContent] = useState("");
@@ -48,9 +47,10 @@ function Profile() {
       });
 
       const { post: createdPost } = response.data;
-      setPost([createdPost, ...post]); // Add new post to the top of the list
-      setPostCount(postCount + 1); // Increment post count
-      setNewPostContent(""); // Clear textarea
+      const updatedPosts = [createdPost, ...localProfilePost];
+      setLocalProfilePost(updatedPosts);
+      setProfilePost(updatedPosts);
+      setNewPostContent("");
       console.log("Post created successfully:", response.data.message);
     } catch (error) {
       const errorMessage =
@@ -62,6 +62,13 @@ function Profile() {
     }
   };
 
+  const handlePostDelete = (postId) => {
+    const updatedPosts = localProfilePost.filter((post) => post.id !== postId);
+    setLocalProfilePost(updatedPosts); // Update local state
+    setProfilePost(updatedPosts); // Sync with context
+  };
+
+  // Fetch posts when username changes
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -71,8 +78,8 @@ function Profile() {
             username: username,
           },
         });
-        setPost(postRes.data.posts);
-        setPostCount(postRes.data.posts.length);
+        setLocalProfilePost(postRes.data.posts);
+        setProfilePost(postRes.data.posts);
         console.log(postRes.data.posts);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -80,8 +87,20 @@ function Profile() {
         setLoading(false);
       }
     };
-    fetchData();
-  }, [username]);
+
+    if (username && username !== "Guest User") {
+      fetchData();
+    } else {
+      setLoading(false);
+      setLocalProfilePost([]);
+      setProfilePost([]);
+    }
+  }, [username, setProfilePost]);
+
+  // Sync localProfilePost with context when profilePost changes externally
+  useEffect(() => {
+    setLocalProfilePost(profilePost || []);
+  }, [profilePost]);
 
   return (
     <div
@@ -193,7 +212,7 @@ function Profile() {
               onClick={() => setIsSettingsOpen(false)}
               className="text-white hover:text-amber-300 cursor-pointer"
             >
-              <X size={20} sm:size={24} />
+              <X size={20} />
             </button>
           </div>
           <div className="flex-1 p-3 sm:p-4">
@@ -205,6 +224,8 @@ function Profile() {
                   if (option === "Log out") {
                     console.log("Logging out...");
                     setUsername("Guest User");
+                    setProfilePost([]);
+                    setLocalProfilePost([]);
                     navigate("/", { replace: true });
                   }
                   setIsSettingsOpen(false);
@@ -247,7 +268,7 @@ function Profile() {
                     Post
                   </p>
                   <p className="text-white font-medium text-lg sm:text-xl md:text-2xl">
-                    {postCount}
+                    {localProfilePost.length}
                   </p>
                 </a>
                 <a
@@ -309,8 +330,23 @@ function Profile() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-12 my-4 pb-10">
-          {!loading &&
-            post.map((item, index) => <Post key={index} post={item} />)}
+          {loading ? (
+            <p className="text-center text-white font-bold col-span-full">
+              Loading posts...
+            </p>
+          ) : localProfilePost.length > 0 ? (
+            localProfilePost.map((item) => (
+              <Post
+                key={item.id}
+                post={item}
+                onDelete={handlePostDelete} // Pass the delete handler
+              />
+            ))
+          ) : (
+            <p className="text-center text-white font-bold col-span-full">
+              No posts available
+            </p>
+          )}
         </div>
       </section>
     </div>
