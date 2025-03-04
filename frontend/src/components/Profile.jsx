@@ -21,7 +21,7 @@ function Profile() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [newPostContent, setNewPostContent] = useState("");
-  const url = "http://127.0.0.1:8787";
+  const url = "https://6905571a-backend.krhimanshu0208.workers.dev";
 
   const settingsOptions = [
     "Edit Profile",

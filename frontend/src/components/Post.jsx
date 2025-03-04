@@ -4,7 +4,7 @@ import { LoginContext } from "../context/LoginContext";
 import axios from "axios";
 
 function Post(props) {
-  const url = "http://127.0.0.1:8787";
+  const url = "https://6905571a-backend.krhimanshu0208.workers.dev";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { username } = useContext(LoginContext);
 

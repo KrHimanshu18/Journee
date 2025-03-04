@@ -4,7 +4,7 @@ import { LoginContext } from "../context/LoginContext";
 
 function ExpPost(props) {
   const { username, following, setFollowing } = useContext(LoginContext);
-  const url = "http://127.0.0.1:8787";
+  const url = "https://6905571a-backend.krhimanshu0208.workers.dev";
   const [isCommentDialogOpen, setIsCommentDialogOpen] = useState(false);
   const [comments, setComments] = useState(props.post.comments || []);
   const [newComment, setNewComment] = useState("");

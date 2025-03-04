@@ -11,7 +11,7 @@ function Home() {
   const [currInd, setCurrInd] = useState(0);
   const length = quotes.length;
   const isLoggedIn = username !== "Guest User";
-  const url = "http://127.0.0.1:8787";
+  const url = "https://6905571a-backend.krhimanshu0208.workers.dev";
 
   useEffect(() => {
     const quoteInterval = setInterval(() => {

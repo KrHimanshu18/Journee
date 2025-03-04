@@ -11,7 +11,7 @@ function Explore() {
     useContext(LoginContext);
   const [loading, setLoading] = useState(true);
   const [localPosts, setLocalPosts] = useState(post); // Added local state
-  const url = "http://127.0.0.1:8787";
+  const url = "https://6905571a-backend.krhimanshu0208.workers.dev";
 
   // Fetch posts when username changes
   useEffect(() => {
