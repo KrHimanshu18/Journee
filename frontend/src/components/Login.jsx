@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import axios from "axios";
@@ -20,7 +20,7 @@ function Login() {
   const navigate = useNavigate();
   const url = "https://6905571a-backend.krhimanshu0208.workers.dev";
 
-  const handleLogin = async () => {
+  const handleLogin = useCallback(async () => {
     try {
       // Make GET request to /login endpoint with username and password as query params
       const response = await axios.get(`${url}/login`, {
@@ -49,9 +49,18 @@ function Login() {
       console.error("Error during login:", errorMessage);
       alert(errorMessage); // Show error to user
     }
-  };
+  }, [
+    username,
+    password,
+    setUsername,
+    setFollower,
+    setFollowing,
+    setProfilePost,
+    navigate,
+    setPassword,
+  ]);
 
-  const handleSignUp = async () => {
+  const handleSignUp = useCallback(async () => {
     try {
       const response = await axios.post(`${url}/signup`, {
         username,
@@ -75,7 +84,18 @@ function Login() {
       console.error("Error during sign-up:", errorMessage);
       alert(errorMessage);
     }
-  };
+  }, [
+    username,
+    email,
+    password,
+    setUsername,
+    setFollower,
+    setFollowing,
+    setProfilePost,
+    navigate,
+    setPassword,
+    setEmail,
+  ]);
 
   return (
     <div
@@ -148,4 +168,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default memo(Login);

@@ -1,5 +1,11 @@
 import axios from "axios";
-import React, { useContext, useState, useEffect } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  memo,
+} from "react";
 import { LoginContext } from "../context/LoginContext";
 
 function ExpPost(props) {
@@ -24,7 +30,7 @@ function ExpPost(props) {
   }, [following, props.post.authorId]);
 
   // When follow button is clicked
-  const toggleFollow = async () => {
+  const toggleFollow = useCallback(async () => {
     try {
       const wasFollowing = isFollowing;
       // Optimistically update UI
@@ -65,10 +71,10 @@ function ExpPost(props) {
       console.error("Error toggling follow:", errorMessage);
       alert(errorMessage);
     }
-  };
+  }, [isFollowing, following, props.post.authorId, setFollowing, username]);
 
   // When like button is clicked
-  const toggleLike = async () => {
+  const toggleLike = useCallback(async () => {
     try {
       const wasLiked = isLiked;
       // Optimistically update UI
@@ -99,7 +105,7 @@ function ExpPost(props) {
       console.error("Error toggling like:", errorMessage);
       alert(errorMessage);
     }
-  };
+  }, [isLiked, likeCount, props.post.id, username]);
 
   // When comment is submitted
   const handleCommentSubmit = async (e) => {
@@ -297,4 +303,4 @@ function ExpPost(props) {
   );
 }
 
-export default ExpPost;
+export default memo(ExpPost);

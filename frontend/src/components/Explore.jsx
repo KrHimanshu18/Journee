@@ -1,4 +1,11 @@
-import { React, useContext, useState, useEffect } from "react";
+import {
+  React,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  memo,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import ExpPost from "./ExpPost";
@@ -45,6 +52,14 @@ function Explore() {
   useEffect(() => {
     setLocalPosts(post);
   }, [post]);
+
+  const handleNavigate = useCallback(
+    (path) => {
+      navigate(path, { replace: true });
+      setIsOpen(false);
+    },
+    [navigate, setIsOpen]
+  );
 
   return (
     <div
@@ -97,28 +112,19 @@ function Explore() {
         >
           <a
             className="text-base sm:text-lg md:text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
-            onClick={() => {
-              navigate("/", { replace: true });
-              setIsOpen(false);
-            }}
+            onClick={() => handleNavigate("/")}
           >
             Home
           </a>
           <a
             className="text-base sm:text-lg md:text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
-            onClick={() => {
-              navigate("/explore", { replace: true });
-              setIsOpen(false);
-            }}
+            onClick={() => handleNavigate("/explore")}
           >
             Explore
           </a>
           <a
             className="text-base sm:text-lg md:text-xl font-bold cursor-pointer font-['Montserrat'] transition-colors duration-300 hover:text-[rgba(255,215,0,1)]"
-            onClick={() => {
-              navigate("/profile", { replace: true });
-              setIsOpen(false);
-            }}
+            onClick={() => handleNavigate("/profile")}
           >
             Profile
           </a>
@@ -144,4 +150,4 @@ function Explore() {
   );
 }
 
-export default Explore;
+export default memo(Explore);

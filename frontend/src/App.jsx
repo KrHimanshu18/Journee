@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Explore from "./components/Explore";
-import Profile from "./components/Profile";
-import Login from "./components/Login";
 import { LoginContext } from "./context/LoginContext";
+
+const Home = lazy(() => import("./components/Home"));
+const Explore = lazy(() => import("./components/Explore"));
+const Profile = lazy(() => import("./components/Profile"));
+const Login = lazy(() => import("./components/Login"));
 
 function App() {
   const [username, setUsername] = useState("Guest User");
@@ -30,7 +31,7 @@ function App() {
       by: "Abraham Lincoln",
     },
     {
-      quote: "Life isn’t about finding yourself. It’s about creating yourself.",
+      quote: "Life isn't about finding yourself. It's about creating yourself.",
       by: "George Bernard Shaw",
     },
     {
@@ -53,7 +54,7 @@ function App() {
       by: "Confucius",
     },
     {
-      quote: "You miss 100% of the shots you don’t take.",
+      quote: "You miss 100% of the shots you don't take.",
       by: "Wayne Gretzky",
     },
     {
@@ -114,10 +115,38 @@ function App() {
       >
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Home />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/explore"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Explore />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Profile />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Login />
+                </Suspense>
+              }
+            />
           </Routes>
         </Router>
       </LoginContext.Provider>

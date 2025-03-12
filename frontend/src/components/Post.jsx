@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback, memo } from "react";
 import { Menu } from "lucide-react";
 import { LoginContext } from "../context/LoginContext";
 import axios from "axios";
@@ -8,11 +8,11 @@ function Post(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { username } = useContext(LoginContext);
 
-  const handleMenuClick = () => {
+  const handleMenuClick = useCallback(() => {
     setIsMenuOpen(!isMenuOpen);
-  };
+  }, [isMenuOpen]);
 
-  const deletePost = async () => {
+  const deletePost = useCallback(async () => {
     try {
       if (!username) {
         throw new Error("You must be logged in to delete a post");
@@ -46,7 +46,7 @@ function Post(props) {
     } finally {
       setIsMenuOpen(false); // Close menu regardless of success or failure
     }
-  };
+  }, [username, props.post.id, props.post.authorId, props.onDelete]);
 
   return (
     <div className="flex flex-col border border-gray-300 rounded-xl shadow-md w-full max-w-3xl mx-auto">
@@ -84,4 +84,4 @@ function Post(props) {
   );
 }
 
-export default Post;
+export default memo(Post);

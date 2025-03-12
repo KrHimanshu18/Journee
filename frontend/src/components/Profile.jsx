@@ -1,4 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  memo,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import Post from "./Post";
@@ -34,7 +40,7 @@ function Profile() {
     "Log out",
   ];
 
-  const newPost = async () => {
+  const newPost = useCallback(async () => {
     try {
       if (!newPostContent.trim()) {
         alert("Post content cannot be empty");
@@ -60,13 +66,24 @@ function Profile() {
       console.error("Error creating post:", errorMessage);
       alert(errorMessage);
     }
-  };
+  }, [
+    newPostContent,
+    localProfilePost,
+    setLocalProfilePost,
+    setProfilePost,
+    username,
+  ]);
 
-  const handlePostDelete = (postId) => {
-    const updatedPosts = localProfilePost.filter((post) => post.id !== postId);
-    setLocalProfilePost(updatedPosts); // Update local state
-    setProfilePost(updatedPosts); // Sync with context
-  };
+  const handlePostDelete = useCallback(
+    (postId) => {
+      const updatedPosts = localProfilePost.filter(
+        (post) => post.id !== postId
+      );
+      setLocalProfilePost(updatedPosts); // Update local state
+      setProfilePost(updatedPosts); // Sync with context
+    },
+    [localProfilePost, setLocalProfilePost, setProfilePost]
+  );
 
   // Fetch posts when username changes
   useEffect(() => {
@@ -353,4 +370,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default memo(Profile);
