@@ -141,7 +141,7 @@ function Home() {
             with others, express your thoughts, and inspire your audience-your
             voice matters and is just a click away from being heard.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mt-6 w-full sm:w-auto">
             {username === "Guest User" && (
               <button
                 className="bg-[rgba(255,215,0,1)] cursor-pointer font-['Montserrat'] text-sm sm:text-base md:text-lg lg:text-xl text-black font-semibold py-2 px-4 sm:px-6 rounded-full shadow-md transition-all hover:bg-amber-500 hover:scale-105 w-full sm:w-auto"
@@ -180,19 +180,19 @@ function Home() {
         </div>
 
         <div
-          className={`${fadeState} quote-container flex flex-col items-center space-y-2`}
+          className={`${fadeState} quote-container flex flex-col mt-8 items-center space-y-2`}
         >
           <p
             className="text-[rgba(255,215,0,1)] text-lg sm:text-xl md:text-2xl font-semibold"
-            style={{ fontFamily: "'Kaushan Script', cursive" }}
+            style={{ fontFamily: "PT Serif, serif" }}
           >
             {quotes[currInd].quote}
           </p>
           <h2
             className="text-[rgba(255,215,0,1)] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold"
-            style={{ fontFamily: "'Kaushan Script', cursive" }}
+            style={{ fontFamily: "PT Serif, serif" }}
           >
-            {quotes[currInd].by}
+            -{quotes[currInd].by}
           </h2>
         </div>
       </section>

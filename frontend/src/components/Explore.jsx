@@ -131,7 +131,7 @@ function Explore() {
         </div>
       </header>
 
-      <section className="px-2 sm:px-4 md:px-8 lg:px-16 xl:px-20 pt-[60px] sm:pt-[80px] md:pt-[80px] lg:pt-[80px]">
+      <section className="px-2 sm:px-4 md:px-8 lg:px-16 xl:px-20 pt-[60px] sm:pt-[80px] md:pt-[80px] lg:pt-[80px] mr-4">
         {loading ? (
           <p className="text-center text-white font-bold h-screen">
             Loading posts...
