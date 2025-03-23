@@ -3,6 +3,7 @@
   "name": "backend",
   "main": "src/index.ts",
   "compatibility_date": "2025-02-27",
+  "node_compat": true,
   "compatibility_flags": ["nodejs_compat"],
   "vars": {
     "DATABASE_URL": "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiOWQ3NzlkYzYtZDdiZS00OWQ4LTgwYjQtNTBhY2RkMDM1Y2E2IiwidGVuYW50X2lkIjoiNTE0YzRlNGExNTgwOTFjNjU2NDI4MTNhMmQxNWIyMTMwMDliYzZlNGZmNTA2NWQwOWViOTAxNGQ2NGQwMzg1OSIsImludGVybmFsX3NlY3JldCI6ImNmNzA5OTk1LTU1NDItNGZhNS05ZDg2LTkxMjlhNzU4MjY5ZSJ9.FF0aHr0xRfim48dcVD_y-jHZTNcppFXtji4yW08zFrk"
